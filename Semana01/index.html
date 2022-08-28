@@ -12,10 +12,10 @@
     </header>
     <aside>
         <h3>Menu</h3>
-        <form action="">
+        <form action="/search" method="GET">
             <div>
+                <input type="search" placeholder="Search">
                 <img src="img/icons/search(white)-icon.svg" alt="search icon">
-                <input type="text" placeholder="Search">
             </div>
         </form>
         <nav>
@@ -61,9 +61,9 @@
             <article>
                 <h2>Trackgenix</h2>
                 <h3>Trackgenix</h3>
-                <img src="" alt="Trackgenix-brand">
+                <img src="img/time-tracking-art.png" alt="Trackgenix-brand">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, dolorem est debitis nostrum non accusantium esse eligendi exercitationem officia? Soluta, sint obcaecati reprehenderit exercitationem ex delectus officiis numquam harum sapiente.</p>
-                <a href="/about-us">Learn More</a>
+                <a href="/products/trackgenix">Learn More</a>
             </article>
         </section>
         <section>
@@ -110,12 +110,32 @@
             </ul>
         </section>
         <section>
-            <form action=""></form>
+            <form action="/contact-me" method="POST">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                <label for="email">E-mail address</label>
+                <input type="email" name="email" id="email">
+                <label for="position">What do you do?</label>
+                <select name="position" id="position">
+                    <option value="dev">Developer</option>
+                    <option value="desgin">Designer/UI-UX</option>
+                    <option value="qa">Quality Assurance</option>
+                    <option value="pm">Project Manager</option>
+                    <option value="agile">Agile expert</option>
+                    <option value="owner">Bussiness</option>
+                    <option value="student">Student</option>
+                    <option value="other">Other position</option>
+                </select>
+                <label for="message">Leave us a message:</label>
+                <textarea name="message" id="message" cols="50" rows="10"></textarea>
+                <input type="submit" value="Contact us">
+            </form>
         </section>
         <section>
+            <h2>About us</h2>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, illo, itaque corrupti adipisci id consequuntur doloribus maiores soluta voluptates praesentium cum est nemo in delectus voluptatem maxime magni deleniti error!</p>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, illo, itaque corrupti adipisci id consequuntur doloribus maiores soluta voluptates praesentium cum est nemo in delectus voluptatem maxime magni deleniti error!</p>
-            <img src="" alt="Trackgenix picture">
+            <img src="img/trackgenix-headquarters.jpg" alt="Trackgenix picture">
         </section>
     </main>
 
@@ -151,9 +171,9 @@
         </div>
         <div>
             <div>
-                <a href="www.facebook.com/Trackgenix"><img src="img/icons/Facebook(white).svg" alt="Facebook logo"></a>
-                <a href="www.instagram.com/Trackgenix"><img src="img/icons/Instagram(white).svg" alt="Instagram logo"></a>
-                <a href="www.twitter.com/Trackgenix"><img src="img/icons/Twitter(white).svg" alt="Twitter logo"></a>
+                <a href="www.facebook.com/Trackgenix"><img src="img/icons/Facebook-icon.svg" alt="Facebook logo"></a>
+                <a href="www.instagram.com/Trackgenix"><img src="img/icons/Instagram-icon.svg" alt="Instagram logo"></a>
+                <a href="www.twitter.com/Trackgenix"><img src="img/icons/Twitter-icon.svg" alt="Twitter logo"></a>
             </div>
             <p>Gigatech Software Solutions S.A. INC, ALL RIGHTS RESERVED</p>
         </div>
