@@ -1,11 +1,11 @@
 /* Importing Roboto--Regular and Bold--form Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;500&display=swap');
 
-/* This are for debugging purposes
+/* This are for debugging purposes */
 * {
-    background-color: #00ff0004;
-    outline: 0.1px solid green;
-} */
+    /* background-color: #00ff0004;
+    outline: 0.1px solid green; */
+}
 
 body{
     font-family: 'Roboto', sans-serif;
@@ -39,7 +39,6 @@ aside {
     line-height: 17.58px;
 
 }
-
 aside h2 {
     font-size: 40px;
     border-bottom: 3px white solid;
@@ -53,7 +52,6 @@ aside h3 {
     display: inline-block;
     margin-bottom: 27px; ;
 }
-
 aside .search-box {
     background-color: #ffffff00;
     border: 1px white solid;
@@ -61,7 +59,6 @@ aside .search-box {
     padding: 7px 8px;
     margin-bottom: 21px;
 }
-
 aside input {
     color: white;
     background-color: inherit;
@@ -69,7 +66,6 @@ aside input {
     height: 16px;
     display: inline-block;
 }
-
 aside nav a {
     background-color: white;
     border-radius: 5px;
@@ -80,12 +76,10 @@ aside nav a {
     text-align: center;
     display: block;
 }
-
 aside img,span{
     display: inline-block;
     vertical-align: middle;
 }
-
 aside .get-in-touch ul{
     margin-top: 10px;
     margin-left: 7px;
@@ -96,10 +90,60 @@ aside .get-in-touch li{
     padding-block: 15.5px;
     padding-left: 5px;
     border-bottom: 1px white solid;
+    display: block;
 }
-
 main{
     margin-top: 120px;
+    padding-top: 76px;
+    padding-inline: 53px;
     /* 288px = 19.05% @ 1512 = 100% */
     margin-left: 19.05%;
+    color: #41426F;
+    font-size: 21px;
+}
+
+main section{
+    padding-top: 50px;
+    padding-left: 19px;
+    border-top: 3px #41426F solid;
+    /* border-bottom: 3px #41426F solid; */
+}
+main section:nth-child(1) h2 {
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+main section:nth-child(1) h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+main section:nth-child(1) p{
+    margin-bottom: 12px;
+}
+
+main section:nth-child(1) img {
+    width: 663px;
+    height: 373px;
+    float: right;
+    margin-left: 27px;
+    margin-bottom: 50px;
+    object-position: center center;
+    object-fit: cover;
+}
+main section:nth-child(1) a{
+    margin-top: 18px;
+    float: right;
+    color:black;
+    font-weight: 500;
+    line-height: 47px;
+    width: 147px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px #00000040;
+}
+main section:nth-child(2){
+    clear: both;
 }
