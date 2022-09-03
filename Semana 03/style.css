@@ -1,11 +1,11 @@
 /* Importing Roboto--Regular and Bold--form Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;500&display=swap');
 
-/* This are for debugging purposes */
+/* This are for debugging purposes
 * {
-    /* background-color: #00ff0004;
-    outline: 0.1px solid green; */
-}
+    background-color: #00ff0004;
+    outline: 0.1px solid green;
+} */
 
 body{
     font-family: 'Roboto', sans-serif;
@@ -88,7 +88,7 @@ aside .get-in-touch li{
     font-size: 14px;
     line-height: 16.4px;
     padding-block: 15.5px;
-    padding-left: 5px;
+    /*  padding-left: 5px; */
     border-bottom: 1px white solid;
     display: block;
 }
@@ -101,7 +101,6 @@ main{
     color: #41426F;
     font-size: 21px;
 }
-
 main section{
     padding-top: 50px;
     padding-left: 19px;
@@ -119,11 +118,9 @@ main section:nth-child(1) h3 {
     font-size: 20px;
     text-transform: uppercase;
 }
-
 main section:nth-child(1) p{
     margin-bottom: 12px;
 }
-
 main section:nth-child(1) img {
     width: 663px;
     height: 373px;
@@ -146,4 +143,64 @@ main section:nth-child(1) a{
 }
 main section:nth-child(2){
     clear: both;
+    column-count: 2;
+    padding: 75px 90px;
 }
+main section:nth-child(2) img {
+    width: 58px;
+    vertical-align: top;
+}
+main section:nth-child(2) h3 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline;
+    line-height: 60px;
+}
+main section:nth-child(2) p {
+    width: 307px;
+    font-size: 14px;
+    font-weight: bold;
+}
+main section:nth-child(2)>div:nth-child(odd) {
+    margin-bottom: 91px;
+}
+main section:nth-child(2) div div {
+    display:inline-block;
+}
+main section:nth-child(6) {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 186px;
+    text-align: center;
+}
+main section:nth-child(6) div{
+    display: inline-block;
+    border-right: 2px #41426F solid;
+    padding-inline: 74px;
+}
+main section:nth-child(6) div:last-child{ border-right: none; }
+main section:nth-child(6) h3{
+    font-size: 40px;
+}
+main section:nth-child(6) li {
+    margin-block: 38px;
+    text-align: left;
+    list-style-position: inside;
+    list-style-image: url(img/icons/triangle-icon.svg);
+}
+main section:nth-child(6) li:first-child { margin-block: 28px; }
+footer {
+    margin-left: 19.05%;
+    background-color: #41426F;
+    padding-block: 20px;
+    text-align: center;
+    color: white;
+}
+footer li {
+    display: inline-block;
+    margin-inline: 45px;
+    margin-bottom: 22px;
+}
+
