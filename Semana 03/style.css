@@ -1,11 +1,11 @@
 /* Importing Roboto--Regular and Bold--form Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* This are for debugging purposes */
+/* This are for debugging purposes
 * {
     background-color: #00ff0004;
     outline: 0.1px solid green;
-}
+} */
 
 body{
     font-family: 'Roboto', sans-serif;
@@ -30,10 +30,76 @@ aside {
     position: fixed;
     top: 120px;
     left: 0px;
-    width: 19.05%;
+    /* 255px = 16.86% @ 1512 = 100% */
+    width: 16.86%;
+    padding: 23px 16px 192px 17px;
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    line-height: 17.58px;
+
+}
+
+aside h2 {
+    font-size: 40px;
+    border-bottom: 3px white solid;
+    display: inline-block;
+    line-height: 47px;
+    margin-bottom: 27px;
+}
+aside h3 {
+    border-bottom: 3px white solid;
+    line-height: 24px;
+    display: inline-block;
+    margin-bottom: 27px; ;
+}
+
+aside .search-box {
+    background-color: #ffffff00;
+    border: 1px white solid;
+    border-radius: 5px;
+    padding: 7px 8px;
+    margin-bottom: 21px;
+}
+
+aside input {
+    color: white;
+    background-color: inherit;
+    border: 0px;
+    height: 16px;
+    display: inline-block;
+}
+
+aside nav a {
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    color: #41426F;
+    text-decoration: none;
+    padding-block: 14px;
+    text-align: center;
+    display: block;
+}
+
+aside img,span{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+aside .get-in-touch ul{
+    margin-top: 10px;
+    margin-left: 7px;
+}
+aside .get-in-touch li{
+    font-size: 14px;
+    line-height: 16.4px;
+    padding-block: 15.5px;
+    padding-left: 5px;
+    border-bottom: 1px white solid;
 }
 
 main{
     margin-top: 120px;
-    margin-left: 288px;
+    /* 288px = 19.05% @ 1512 = 100% */
+    margin-left: 19.05%;
 }
