@@ -1,0 +1,39 @@
+/* Importing Roboto--Regular and Bold--form Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* This are for debugging purposes */
+* {
+    background-color: #00ff0004;
+    outline: 0.1px solid green;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    font-weight: bold;
+    background-color: #41426F;
+    color: white;
+    font-size: 47px;
+    padding-top: 36px;
+    padding-bottom: 37px;
+    padding-left: 32px;
+    position:fixed;
+    width: 100%;
+    top: 0px;
+    left:0px;
+}
+
+aside {
+    background-color: #41426F;
+    position: fixed;
+    top: 120px;
+    left: 0px;
+    width: 19.05%;
+}
+
+main{
+    margin-top: 120px;
+    margin-left: 288px;
+}
