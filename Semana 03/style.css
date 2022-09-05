@@ -75,6 +75,7 @@ aside nav a {
     padding-block: 14px;
     text-align: center;
     display: block;
+    box-shadow: 0px 4px 4px #00000040;
 }
 aside img,span{
     display: inline-block;
@@ -124,6 +125,7 @@ main section:nth-child(1) p{
 main section:nth-child(1) img {
     width: 663px;
     height: 373px;
+    border-radius: 5px;
     float: right;
     margin-left: 27px;
     margin-bottom: 50px;
@@ -168,6 +170,24 @@ main section:nth-child(2)>div:nth-child(odd) {
 }
 main section:nth-child(2) div div {
     display:inline-block;
+}
+main section:nth-child(5) h2 {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+main section:nth-child(5) p{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+main section:nth-child(5) img {
+    width: 60.67%;
+    height: 211px;
+    object-fit: cover;
+    border-radius: 5px;
+    float: right;
+    margin-left: 65px;
 }
 main section:nth-child(6) {
     font-size: 15px;
