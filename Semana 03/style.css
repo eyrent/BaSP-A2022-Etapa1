@@ -134,6 +134,7 @@ main section:nth-child(1) img {
 }
 main section:nth-child(1) a{
     margin-top: 18px;
+    margin-bottom: 50px;
     float: right;
     color:black;
     font-weight: 500;
@@ -213,6 +214,27 @@ main form input[type=submit] {
     background-color: white;
     box-shadow: 0px 4px 4px #00000040;
     
+}
+main section:nth-child(3) {
+    font-size: 20px;
+}
+main section:nth-child(3) h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+main section:nth-child(3) h3 {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 32px;
+    margin-bottom: 9px;
+}
+main section:nth-child(3) ul {
+    list-style-position: inside;
+    list-style-image: url(img/icons/triangle-icon.svg);
+    column-count: 2;
+    column-gap: 80px;
+    margin-left: 48px;
 }
 main section:nth-child(5) h2 {
     font-size: 30px;
