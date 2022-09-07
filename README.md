@@ -25,7 +25,7 @@ As an assignment for the **Become a Software Developer**  bootcamp (2022 edition
 ### Week 3
 - Our efforts were focused on styling the landing page using CSS, with the limitation of **not using neither flexbox nor CSS grids**. Therefore a combination of `display`, `position`, `float`, `margin` and `padding` properties were used to present the layout as _'pixel perfect'_ as possible.
 - Some considerations were taken with respect to resolutions:
-    - A viewport of `1512x850px` was used during the styling process. This was enabled by the _device emulation_ feature in Firefox's inspector.
+    - A viewport of `1512x850px` was used during the styling process. This was taken from the width of the frame in the Figma file and deriving the height from a 16:9 aspect ratio. This was enabled by the _Responsive Design Mode_ feature in Firefox's inspector.
     - Values for sizing and spacing were taken from the Figma file using the inspector. Special care was taken with text and headings since it was necessary to use the `line-height`property to get the exact look.
 - Font is imported from Google Fonts in the `style.css` file directly.
 - Changes were made in `index.html` to allow styling, e.g. adding classes, replacing img tags for some icons, adding divs.
