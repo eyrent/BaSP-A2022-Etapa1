@@ -88,12 +88,12 @@ aside nav .icon {
     vertical-align: middle;
     transition: background-image 0.3s;
 }
-.home-icon { background-image: url(/Semana\ 03/img/icons/house-icon.svg); }
-aside nav a:hover .home-icon { background-image: url(/Semana\ 03/img/icons/house-icon-white.svg); }
-.login-icon { background-image: url(/Semana\ 03/img/icons/login-icon.svg); }
-aside nav a:hover .login-icon   { background-image: url(/Semana\ 03/img/icons/login-icon-white.svg); }
-.signup-icon { background-image: url(/Semana\ 03/img/icons/man-icon.svg); }
-aside nav a:hover .signup-icon   { background-image: url(/Semana\ 03/img/icons/man-icon-white.svg); }
+.home-icon { background-image: url(../img/icons/house-icon.svg); }
+aside nav a:hover .home-icon { background-image: url(../img/icons/house-icon-white.svg); }
+.login-icon { background-image: url(../img/icons/login-icon.svg); }
+aside nav a:hover .login-icon   { background-image: url(../img/icons/login-icon-white.svg); }
+.signup-icon { background-image: url(../img/icons/man-icon.svg); }
+aside nav a:hover .signup-icon   { background-image: url(../img/icons/man-icon-white.svg); }
 aside img,span {
     display: inline-block;
     vertical-align: middle;
@@ -263,7 +263,7 @@ main .benefits h3 {
 main .benefits ul {
     margin-left: 48px;
     list-style-position: inside;
-    list-style-image: url(/Semana\ 03/img/icons/triangle-icon.svg);
+    list-style-image: url(../img/icons/triangle-icon.svg);
     column-count: 2;
     column-gap: 80px;
 }
@@ -303,7 +303,7 @@ main .site-map li {
     margin-block: 38px;
     text-align: left;
     list-style-position: inside;
-    list-style-image: url(/Semana\ 03/img/icons/triangle-icon.svg);
+    list-style-image: url(../img/icons/triangle-icon.svg);
 }
 main .site-map li:first-child { margin-block: 28px; }
 footer {
@@ -318,4 +318,3 @@ footer li {
     margin-inline: 45px;
     margin-bottom: 22px;
 }
-
