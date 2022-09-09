@@ -5,16 +5,17 @@ _by Fabricio Castillo_
 As an assignment for the **Become a Software Developer**  bootcamp (2022 edition) by [Radium Rocket](https://radiumrocket.com/) I, as past of a work team, set out to develop a website/web app called **Trackgenix**. This file covers that development process.
 
 ## Landing page layout
-<img src="Semana03/../Semana%2003/img/landing-page.jpg">
+<img src="semana-04/assets/img/landing-page.jpg">
 
 ## Project Log 📆
 
 ### Week 1
+
 - **Trackgenix**'s landing page and screen were laid out in Figma to create [demo prototypes](https://www.figma.com/proto/2t7XPyK3dineUQt2Coyxj6/UI-kit-RR-BaSP-A?node-id=653%3A1345) that could showcase the site's functionality.
 
 - My team focused mainly on the _Employee_ and _Project Manager_ type screens. **The design and layout will be subjected to alterations and upgrade as required** by the client through feedback.
 
-### Week 2
+### Week 2 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-02/index.html)</sup>
 
 - This sprint's objective is to create the initial html document for **Trackgenix**'s landing page as well as setting up this [GitHub repository](https://github.com/eyrent/BaSP-A2022-Etapa1) to track changes.
 
@@ -22,7 +23,7 @@ As an assignment for the **Become a Software Developer**  bootcamp (2022 edition
 
 - Icons were extracted from the [Figma file](https://www.figma.com/file/2t7XPyK3dineUQt2Coyxj6/UI-kit-RR-BaSP-A) used during the design and prototyping stage and included in the page. I selected two other pictures for the same use as well. However **these icons are in the darker colour version** in order to be seen when rendered by the browser without styles. They **will be updated to their light variants** when there's an appropiate background.
 
-### Week 3
+### Week 3 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-03/index.html)</sup>
 - Our efforts were focused on styling the landing page using CSS, with the limitation of **not using neither flexbox nor CSS grids**. Therefore a combination of `display`, `position`, `float`, `margin` and `padding` properties were used to present the layout as _'pixel perfect'_ as possible.
 - Some considerations were taken with respect to resolutions:
     - A viewport of `1512x850px` was used during the styling process. This was taken from the width of the frame in the Figma file and deriving the height from a 16:9 aspect ratio. This was enabled by the _Responsive Design Mode_ feature in Firefox's inspector.
