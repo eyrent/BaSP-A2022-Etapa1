@@ -1,0 +1,21 @@
+header {
+    position:fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%;
+    top: 0px;
+    left:0px;
+    height: 201.26px;
+    font-weight: bold;
+    background-color: #41426F;
+    color: white;
+    font-size: 40px;
+}
+header img {
+    height: 50px;
+}
+header>*{
+    margin-inline: 20px;
+}
