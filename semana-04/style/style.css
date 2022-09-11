@@ -5,6 +5,7 @@
 } */
 body{
     font-family: 'Roboto', sans-serif;
+    transition: 0.3s ease-in-out;
 }
 aside {
     display:none;

@@ -1,12 +1,13 @@
 footer {
-    margin-left: 19.05%;
+
     padding-block: 20px;
     background-color: #41426F;
     text-align: center;
     color: white;
 }
-footer li {
-    display: inline-block;
-    margin-inline: 45px;
+footer ul {
+    display: flex;
+    gap: 87px;
+    justify-content: center;
     margin-bottom: 22px;
 }
