@@ -195,22 +195,23 @@ main .about-us h2 {
 }
 main .about-us p{
     order: 2;
-    flex: 0 0 220px;
+    flex: 1 0 220px;
     font-weight: 400;
     line-height: normal;
     font-size: 18.5px;
-    align-self: flex-end;
+    align-self: flex-start;
 }
 main .about-us p:last-child{
     margin-bottom: 0px;
-    flex: 0 0 100%;
+    flex: 1 0 100%;
 }
 main .about-us img {
-    flex: 1 0 145px;
+    flex: 10 0 30%;
     order: 1;
     width: 100%;
     height: 171px;
     object-fit: cover;
+    object-position: right;
     border-radius: 5px;
     align-self: center;
 }
