@@ -4,9 +4,10 @@
     outline: 0.1px solid green;
 } */
 body{
+    display: flex;
+    align-items: stretch;
+    flex-flow: row wrap;
     font-family: 'Roboto', sans-serif;
     transition: 0.3s ease-in-out;
-}
-aside {
-    display:none;
+    height: auto;
 }
