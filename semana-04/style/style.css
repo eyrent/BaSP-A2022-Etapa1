@@ -1,13 +1,75 @@
-/* This are for debugging purposes
-* {
-    background-color: #00ff0004;
-    outline: 0.1px solid green;
-} */
 body{
     display: flex;
-    align-items: stretch;
     flex-flow: row wrap;
     font-family: 'Roboto', sans-serif;
     transition: 0.3s ease-in-out;
-    height: auto;
+}
+@media screen and (min-width: 768px) {
+    main .intro>* {
+        width: 45%;
+    }
+    main .intro {
+        /* This value comes from the image height */
+        height: 285px;
+        padding-block: 45px;
+    }
+    /* Make img element appear and replace the background-image of the anchor */
+    main .intro img {
+        display: initial;
+    }
+    main .more {
+        height: auto;
+        margin-top: 0px;
+        padding-block: 0px;
+        background-image: none;
+    }
+    main .features {
+        padding-inline: 31px;
+    }
+    main .features h3 {
+        line-height: 1.2em;
+    }
+    main .features div {
+        flex: 1 0 48%;
+    }
+    main .features .col {
+        padding-right: 0;
+    }
+    main .benefits {
+        padding-inline: 20%;
+    }
+    main .about-us {
+        width: auto;
+        padding-inline: 10%;
+    }
+    main .site-map {
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 0px;
+        box-sizing: border-box;
+        width: 100%;
+        padding-block: 60px;
+        padding-inline: 7%;
+        margin-bottom: 0;;
+    }
+    main .site-map .link-group {
+        padding: 8px 0px;
+        height: 100%;
+        border-bottom: none;
+    }
+    main .site-map .separator {
+        display:initial;
+    }
+}
+@media screen and (min-width: 1024px){
+    aside {
+        display: flex;
+    }
+    main .benefits {
+        padding-inline: 53px;
+    }
+    /* Make button disapear since the sidebar is displayed */
+    .burger-button {
+        display: none;
+    }
 }

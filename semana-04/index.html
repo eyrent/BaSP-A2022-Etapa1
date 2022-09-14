@@ -7,16 +7,16 @@
 		<title>Trackgenix</title>
         <link rel="stylesheet" href="style/reset.css">
         <link rel="stylesheet" href="style/fonts.css">
-        <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/header.css">
         <link rel="stylesheet" href="style/sidebar.css">
         <link rel="stylesheet" href="style/main.css">
         <link rel="stylesheet" href="style/footer.css">
+        <link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
 		<header>
 			<h1>Trackgenix</h1>
-			<img src="./assets/icons/bars-solid.svg" alt="">
+			<img class="burger-button"src="./assets/icons/bars-solid.svg" alt="">
 		</header>
 		<aside>
 			<div class="sticky-sidebar">
@@ -175,14 +175,10 @@
 			<section>
 				<form action="/send-message" method="POST">
 					<div>
-						<div>
-							<label for="name">Name</label>
-							<input type="text" name="name" id="name">
-						</div>
-						<div>
-							<label for="email">E-mail address</label>
-							<input type="email" name="email" id="email">
-						</div>
+						<label for="name">Name</label>
+						<input type="text" name="name" id="name">
+						<label for="email">E-mail address</label>
+						<input type="email" name="email" id="email">
 					</div>
 					<label for="area">Contact area:</label>
 					<select name="area" id="area">
