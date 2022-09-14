@@ -32,9 +32,20 @@ As an assignment for the **Become a Software Developer**  bootcamp (2022 edition
 - Changes were made in `index.html` to allow styling, e.g. adding classes, replacing img tags for some icons, adding divs.
 - Also indentation was corrected, as well as element heirarchy and order in link buttons.
 
+### Week 4 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-04/index.html)</sup>
+
+- During this week we focused into making **Trackgenix**'s landing page responsive following the _Mobile first_ paradigm. 
+- **Styles were distributed into different files** for each major component (header, sidebar, content, footer).
+- There's a general `style.css` file in which you can find the **media queries** necessary for the responsive behaviour. The breakpoints are set to `768px` for tablet type devices and `1024px`for desktop and larger devices. 
+- **CSS Flexbox was used extensively** throughout styling, prefering it over media queries.
+-  Some comments were added to stylesheets to provide clarification.
+-  **Many flex containers are set in the row direction with wrap enabled**. This was the main tool to create 'responsiveness'. In order to force line breaking I experimented with the inspector to get optimal sizes for flex-basis.
+-  I used **percent values wherever I could** so that proportions stay stable through the range of resolutions.
+-  The reference design was not created with exact sizes in mind. Therefore **some dimensions were approximated** to get the look and make the responsive styling process more straightforward.
 ## Known issues 🪛
 
 - At the moment, in Figma, there's no convenient way of showing a drop-down menu with choosable options. The dropdown menu of tasks will behave like a regular one.
 - At the moment, in Figma, there's no way to alter the content of text boxes to reflect a selected/clicked option in a dropdown menu. The date selector component, specifically won't change the placeholder text in the date range fields (in _Reports_).
 - The dropdown menu in the form is not styled completely. After clicking in the arrow the system styling is used, i.e. there is not special styling for the options, which kind of breaks the look 😐
 - In Firefox the animations for the links in the sidebar are out of sync due to background-image transition is not supported.
+- Responsive font sizes are not a thing yet.
