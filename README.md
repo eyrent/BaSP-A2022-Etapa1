@@ -34,14 +34,29 @@ As an assignment for the **Become a Software Developer**  bootcamp (2022 edition
 
 ### Week 4 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-04/index.html)</sup>
 
-- During this week we focused into making **Trackgenix**'s landing page responsive following the _Mobile first_ paradigm. 
+- During this week we focused into making **Trackgenix**'s landing page responsive following the _Mobile first_ paradigm.
 - **Styles were distributed into different files** for each major component (header, sidebar, content, footer).
-- There's a general `style.css` file in which you can find the **media queries** necessary for the responsive behaviour. The breakpoints are set to `768px` for tablet type devices and `1024px`for desktop and larger devices. 
+- There's a general `style.css` file in which you can find the **media queries** necessary for the responsive behaviour. The breakpoints are set to `768px` for tablet type devices and `1024px`for desktop and larger devices.
 - **CSS Flexbox was used extensively** throughout styling, prefering it over media queries.
 -  Some comments were added to stylesheets to provide clarification.
 -  **Many flex containers are set in the row direction with wrap enabled**. This was the main tool to create 'responsiveness'. In order to force line breaking I experimented with the inspector to get optimal sizes for flex-basis.
 -  I used **percent values wherever I could** so that proportions stay stable through the range of resolutions.
 -  The reference design was not created with exact sizes in mind. Therefore **some dimensions were approximated** to get the look and make the responsive styling process more straightforward.
+
+### Week 5 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-05/index.html)</sup>
+
+- Javascript was introduced so we solved 6 sets of exercises for this week. The following topics were covered:
+    - Variables and Operators
+    - Strings
+    - Arrays
+    - If, else (flow control)
+    - For loops
+    - Functions
+- Also, corrections provided in the feedback were made. For the record:
+  - First change
+  - Second change
+  - Etc.
+
 ## Known issues 🪛
 
 - At the moment, in Figma, there's no convenient way of showing a drop-down menu with choosable options. The dropdown menu of tasks will behave like a regular one.
