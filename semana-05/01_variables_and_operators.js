@@ -15,8 +15,8 @@ console.log("2.b> String concat is \"" + msg + "\"");
 /*Crear dos variables de tipo String y sumar el largo de cada variable
   (cantidad de letras del string) guardando el resultado de
   la suma en una 3er variable (utilizar length). */
-var ss1 = "Pineapple pizza is definitely a thing. 🍍";
-var ss2 = "Blue cheese is my second best. 🍕🧀";
-var sumOfLenghts = ss1.length + ss2.length;
+var str3 = "Pineapple pizza is definitely a thing. 🍍";
+var str4 = "Blue cheese is my second best. 🍕🧀";
+var sumOfLenghts = str3.length + str4.length;
 console.log("2.c> sumOfLengths = ", sumOfLenghts);
 
