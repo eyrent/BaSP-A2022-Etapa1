@@ -21,7 +21,6 @@ var sentence = "";
 for(var i = 0; i < words.length; i++){
     sentence = sentence.concat(words[i]);
     sentence = sentence.concat(" ");
-    console.log("");
 }
 alert("5.c> " + sentence);
 

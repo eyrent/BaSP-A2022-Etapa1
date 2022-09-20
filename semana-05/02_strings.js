@@ -30,12 +30,12 @@ console.log("2.e> First space index: ", firstSeparator);
     Utilizar los métodos de los ejercicios anteriores para generar un nuevo string que tenga
     la primera letra de ambas palabras en mayúscula y las demás letras en minúscula */
 var universe = "anthro-chronologically incomprehensible"
-var wStart = 0;
 /* Assing first word with capitalized fist character INCLUDING SPACE */
-var capEachWord =
-universe.substring(wStart, wStart + 1).toUpperCase() +  universe.substring(wStart+1, universe.indexOf(" ", wStart) +1);
-wStart = universe.indexOf(" ", wStart) + 1;
+var capEachWord = universe.substring(0,1).toUpperCase() +
+    universe.substring(1, universe.indexOf(" ") +1);
+var nextWord = universe.indexOf(" ") + 1;
 /* Now concatenate the second CAPed word */
-capEachWord += universe.substring(wStart, wStart + 1).toUpperCase() +  universe.substring(wStart+1, universe.length);
+capEachWord += universe.substring(nextWord, nextWord + 1).toUpperCase() +
+    universe.substring(nextWord + 1, universe.length)
 console.log("2.f> ", capEachWord);
 
