@@ -1,17 +1,19 @@
-main{
+.main-container{
     /* 1024(breakpoint)-288(sidebar)= 736*/
     flex: 1 1 736px;
     /* Taking padding into account for box sizing */
     box-sizing: border-box;
     padding-top: 20px;
-    padding-inline: 20px;
     font-size: 21px;
     color: #41426F;
 }
-main section{
+.main-container main {
+    padding-inline: 20px;
+}
+.main-container section{
     border-top: 3px #41426F solid;
 }
-main .intro {
+.intro {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
@@ -19,17 +21,17 @@ main .intro {
     gap: 8px;
     padding: 5px 0 45px 0;
 }
-main .intro h2 {
+.intro h2 {
     margin-bottom: 5px;
     font-size: 30px;
     font-weight: bold;
     text-transform: uppercase;
 }
-main .intro h3 {
+.intro h3 {
     font-size: 20px;
     text-transform: uppercase;
 }
-main .intro img {
+.intro img {
     display: none;
     height: 285px;
     border-radius: 5px;
@@ -40,7 +42,7 @@ main p {
     font-size: 12px;
     line-height: 14.04px;
 }
-main .more {
+.more {
     display: flex;
     flex-direction: row-reverse;
     align-items: end;
@@ -52,7 +54,7 @@ main .more {
     background-position: center;
     background-size: cover;
 }
-main .intro a{
+.intro a{
     display: block;
     width: 147px;
     order: 2;
@@ -67,11 +69,11 @@ main .intro a{
     transition-property: color background-color;
     transition-duration: 0.3s;
 }
-main .intro a:hover{
+.intro a:hover{
     background-color: #AACE9B;
     color: white;
 }
-main .features{
+.features{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -79,70 +81,85 @@ main .features{
     gap: 50px;
     padding: 45px 0 68px 0;
 }
-main .features .row{
+.features .row{
     display: flex;
     align-items: start;
     gap: 10px;
     /* flex-basis is taken from experimentation,
        it make the flex flow break into a 2x2 grid
        at the right breakpoint  */
-    flex: 1 0 370px
+    flex: 1 0 380px;
+    max-width: 768px;
+    justify-content: center;
 }
-main .features .col{
+.features .col{
     display: flex;
+    flex: 0 0 auto;
+    width: 75%;
     flex-direction: column;
     gap: 7px;
     /* To make paragraph look centered
        58px icon + 10 gap = 68px */
     padding-right: 68px;
 }
-main .features img {
+.features img {
     flex: 0 0 58px;
     width: 100%;
 }
-main .features h3 {
+.features h3 {
     color: black;
     font-size: 30px;
     line-height: 58px;
     font-weight: bold;
     letter-spacing: -1.5px;
+    white-space: nowrap;
 }
-main .features p {
+.features p {
     font-size: 14px;
     font-weight: bold;
 }
-main .benefits {
+.benefits {
     padding: 26px 70px;
     letter-spacing: -1px;
 }
-main .benefits p {
+.benefits p {
     font-size: 20px;
     font-weight: 400;
     line-height: 23.44px;
 }
-main .benefits h2 {
+.benefits h2 {
     font-size: 40px;
     font-weight: 700;
     border-bottom: 4px #41426F solid;
     width: fit-content;
 }
-main .benefits h3 {
+.benefits h3 {
     display: inline;
     font-size: 22px;
     font-weight: 600;
 }
-main .benefits ul {
+.benefits ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    row-gap: 30px;
     margin-top: 26px;
-    list-style-position: inside;
-    list-style-image: url(../assets/icons/triangle-icon.svg);
+    margin-left: 50px;
+    justify-content: space-evenly;
 }
-main .benefits li {
-    flex: 1 0 280px;
+.benefits li {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 360px;
 }
-main form {
+.benefits .list-icon {
+    background-image: url(../assets/icons/triangle-icon.svg);
+    width: 11px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    flex-shrink: 0;
+}
+form {
     display: flex;
     flex-direction: column;
     margin-inline: 10%;
@@ -159,25 +176,29 @@ main form {
     overflow: auto;
 }
 /* This divs are for making the 'name' and 'email' fields side by side */
-main form>div {
+form>div {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    align-items: center;
 }
-main form div>* {
-    flex: 1 0 268px;
+form div > input {
+    flex: 1 0 260px;
 }
-main form label {
+form div > label {
+    flex: 0 0 105px;
+}
+form label {
     display: inline-block;
     margin-bottom: 7px;
 }
-main form input,textarea,select {
+form input,textarea,select {
     display: block;
     width: 100%;
     box-sizing: border-box;
     padding-inline: 12px;
     padding-block: 10px;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
     background-color: transparent;
     border: #41426F 1px solid;
     border-radius: 4px;
@@ -185,11 +206,11 @@ main form input,textarea,select {
     font: inherit;
     font-weight: normal;
 }
-main input[type=submit]:hover{
+input[type=submit]:hover{
     background-color: #41426F;
     color: white;
 }
-main form input[type=submit] {
+form input[type=submit] {
     align-self: flex-end;
     width: 100px;
     padding-block: 4.5px;
@@ -202,13 +223,13 @@ main form input[type=submit] {
     transition-property: color background-color;
     transition-duration: 0.3s;
 }
-main .about-us {
+.about-us {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     padding-block: 38px;
 }
-main .about-us h2 {
+.about-us h2 {
     flex: 0 0 100%;
     width: 100%;
     margin-bottom: 8px;
@@ -216,7 +237,7 @@ main .about-us h2 {
     font-weight: bold;
     text-transform: uppercase;
 }
-main .about-us p{
+.about-us p{
     /* If there is less than 220px just stack all the elements */
     flex: 1 0 220px;
     order: 2;
@@ -226,11 +247,11 @@ main .about-us p{
     line-height: normal;
 }
 /* Make last paragraph always wrap to a new line with width 100% */
-main .about-us p:last-child{
+.about-us p:last-child{
     flex: 1 0 100%;
     margin-bottom: 0px;
 }
-main .about-us img {
+.about-us img {
     flex: 10 0 30%;
     order: 1;
     align-self: center;
@@ -240,20 +261,20 @@ main .about-us img {
     object-position: right;
     border-radius: 5px;
 }
-main .site-map {
+.site-map {
     display: flex;
     flex-flow: row wrap;
     justify-content: baseline;
     gap: 50px;
     padding-block: 50px;
     /* Using different padding amounts to make links look centered optically */
-    padding-left: 37%;
-    padding-right: 23%;
+    padding-inline: 40%;
+    padding-right: 20%;
     font-size: 15px;
     font-weight: bold;
     text-align: left;
 }
-main .site-map .link-group{
+.site-map .link-group{
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -262,24 +283,24 @@ main .site-map .link-group{
     border-bottom: 3px #41426F solid;
     padding-bottom: 50px;
 }
-main .site-map .link-group:last-child {
+.site-map .link-group:last-child {
     border-bottom: none;
 }
 /* Using a separator for the horizontal layout
    and border-bottom and padding for the vertical layout */
-main .site-map .separator {
+.site-map .separator {
     display: none;
     border-right: #41426F 3px solid;
 }
-main .site-map h3 {
+.site-map h3 {
     flex: 1 0 30%;
     font-size: 40px;
 }
-main .site-map .link-group ul {
+.site-map .link-group ul {
     flex: 1 0 20%;
     padding-left: 10px;
 }
-main .site-map li {
+.site-map li {
     margin-top: 30px;
     text-align: left;
     list-style-position: inside;

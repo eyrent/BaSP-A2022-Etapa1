@@ -4,34 +4,29 @@ aside {
     /* 288px is the size of the sidebar in the Figma file */
     min-width: 288px;
     background-color: #41426F;
-}
-.sticky-sidebar {
-    display: flex;
     flex-direction: column;
     row-gap: 30px;
-    align-self: flex-start;
-    position: sticky;
-    top: 120px;
+    align-self: stretch;
     padding: 23px 16px;
     color: white;
     font-size: 15px;
     font-weight: bold;
     line-height: 17.58px;
 }
-.sticky-sidebar h2 {
+aside h2 {
     display: inline-block;
     width: fit-content;
     border-bottom: 3px #AACE9B solid;
     font-size: 40px;
     line-height: 47px;
 }
-.sticky-sidebar h3 {
+aside h3 {
     display: inline-block;
     width: fit-content;
     border-bottom: 3px #AACE9B solid;
     line-height: 24px;
 }
-.sticky-sidebar .search-box {
+aside .search-box {
     display: flex;
     align-content: center;
     box-sizing: border-box;
@@ -40,17 +35,17 @@ aside {
     border: 1px white solid;
     border-radius: 5px;
 }
-.sticky-sidebar input {
+aside input {
     background-color: inherit;
     border: 0;
     color: white;
 }
-.sticky-sidebar nav ul {
+aside nav ul {
     display: flex;
     flex-direction: column;
     row-gap: 25px;
 }
-.sticky-sidebar nav a {
+aside nav a {
     display: flex;
     justify-content: center;
     column-gap: 5px;
@@ -63,14 +58,14 @@ aside {
     transition-property: color background-color;
     transition-duration: 0.3s;
 }
-.sticky-sidebar nav a:hover {
+aside nav a:hover {
     background-color: #AACE9B;
     color: white;
 }
-.sticky-sidebar nav span {
+aside nav span {
     flex: 0 1 25%;
 }
-.sticky-sidebar nav .icon {
+aside nav .icon {
     width: 20px;
     height: 20px;
     background-position: center;
@@ -79,22 +74,22 @@ aside {
     transition: background-image 0.3s;
 }
 .home-icon { background-image: url(../assets/icons/house-icon.svg); }
-.sticky-sidebar nav a:hover .home-icon { background-image: url(../assets/icons/house-icon-white.svg); }
+aside nav a:hover .home-icon { background-image: url(../assets/icons/house-icon-white.svg); }
 .login-icon { background-image: url(../assets/icons/login-icon.svg); }
-.sticky-sidebar nav a:hover .login-icon   { background-image: url(../assets/icons/login-icon-white.svg); }
+aside nav a:hover .login-icon   { background-image: url(../assets/icons/login-icon-white.svg); }
 .signup-icon { background-image: url(../assets/icons/man-icon.svg); }
-.sticky-sidebar nav a:hover .signup-icon   { background-image: url(../assets/icons/man-icon-white.svg); }
-.sticky-sidebar .get-in-touch ul{
+aside nav a:hover .signup-icon   { background-image: url(../assets/icons/man-icon-white.svg); }
+aside .get-in-touch ul{
     display: flex;
     flex-direction: column;
 }
-.sticky-sidebar .get-in-touch {
+aside .get-in-touch {
     display: flex;
     flex-direction: column;
     align-content: flex-start;
     row-gap: 29px;
 }
-.sticky-sidebar .get-in-touch li{
+aside .get-in-touch li{
     display: block;
     padding-block: 15.5px;
     border-bottom: 1px white solid;

@@ -1,48 +1,47 @@
 body{
+    padding-top: 120px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row;
     font-family: 'Roboto', sans-serif;
     transition: 0.3s ease-in-out;
+    height: auto;
 }
 @media screen and (min-width: 768px) {
-    main .intro>* {
+    .intro>* {
         width: 45%;
     }
-    main .intro {
+    .intro {
         /* This value comes from the image height */
         height: 285px;
         padding-block: 45px;
     }
     /* Make img element appear and replace the background-image of the anchor */
-    main .intro img {
+    .intro img {
         display: initial;
     }
-    main .more {
+    .more {
         height: auto;
         margin-top: 0px;
         padding-block: 0px;
         background-image: none;
     }
-    main .features {
-        padding-inline: 31px;
-    }
-    main .features h3 {
+    .features h3 {
         line-height: 1.2em;
     }
-    main .features div {
+    .features div {
         flex: 1 0 48%;
     }
-    main .features .col {
+    .features .col {
         padding-right: 0;
     }
-    main .benefits {
-        padding-inline: 20%;
+    .benefits {
+        padding-inline: 10%;
     }
-    main .about-us {
+    .about-us {
         width: auto;
         padding-inline: 10%;
     }
-    main .site-map {
+    .site-map {
         flex-direction: row;
         justify-content: space-evenly;
         gap: 0px;
@@ -52,12 +51,12 @@ body{
         padding-inline: 7%;
         margin-bottom: 0;;
     }
-    main .site-map .link-group {
+    .site-map .link-group {
         padding: 8px 0px;
         height: 100%;
         border-bottom: none;
     }
-    main .site-map .separator {
+    .site-map .separator {
         display:initial;
     }
 }
@@ -65,11 +64,20 @@ body{
     aside {
         display: flex;
     }
-    main .benefits {
-        padding-inline: 53px;
+    .benefits {
+        padding-inline: 15px;
     }
     /* Make button disapear since the sidebar is displayed */
     .burger-button {
         display: none;
     }
+    .about-us p{
+        order: 1;
+    }
+    .about-us img {
+        order: 2;
+   }
+    .about-us p:last-child{
+        order: 3;
+   }
 }

@@ -52,10 +52,7 @@ As an assignment for the **Become a Software Developer**  bootcamp (2022 edition
     - If, else (flow control)
     - For loops
     - Functions
-- Also, corrections provided in the feedback were made. For the record:
-  - First change
-  - Second change
-  - Etc.
+Also, corrections provided in the feedback were made.
 
 ## Known issues 🪛
 
