@@ -107,10 +107,10 @@ footer {
     ;
 }
 .red-border{
-    border: 1px #ff0000 solid;
+    outline: 1px #ff0000 solid;
 }
-.red-border{
-    border: 1px #49A37B solid;
+.green-border{
+    outline: 1px #49A37B solid;
 }
 .hidden {
     display: none;
