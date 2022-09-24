@@ -1,7 +1,7 @@
 body{
     padding-top: 120px;
     display: flex;
-    flex-flow: row;
+    flex-flow: row wrap;
     font-family: 'Roboto', sans-serif;
     transition: 0.3s ease-in-out;
     height: auto;
