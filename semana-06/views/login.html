@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/fonts.css">
     <link rel="stylesheet" href="../styles/header.css">
     <!-- <link rel="stylesheet" href="../styles/main.css"> -->
+    <link rel="stylesheet" href="../styles/login.css">
     <link rel="stylesheet" href="../styles/footer.css">
     <link rel="stylesheet" href="../styles/style.css">
 </head>
@@ -17,29 +18,30 @@
         <h1>Trackgenix</h1>
         <img class="burger-button"src="../assets/icons/bars-solid.svg" alt="">
     </header>
-    <main>
-        <img src="" alt="">
-        <div>
+    <main class="login-main">
+        <img src="../assets/img/trackgenix-logo.svg" alt="Trackgenix logo">
+        <div class="frame drop-shadow">
             <h2>Log in</h2>
             <form>
                 <fieldset>
-                    <label for="username">Username</label>
-                    <input type="text" name="user" id="username">
+                    <label class="hidden" for="username">Username</label>
+                    <input class="text-field" type="text" name="user" id="username" placeholder="Username">
                 </fieldset>
                 <fieldset>
-                    <label for="password">Password</label>
-                    <input type="password" name="pass" id="password">
+                    <label class="hidden" for="password">Password</label>
+                    <input class="text-field" type="password" name="pass" id="password" placeholder="Password">
                 </fieldset>
-                <fieldset>
-                    <input type="radio" name="remember-user" id="remember-user-radio">
-                    <label for="remember-user-radio">Rememeber me</label>
+                <fieldset id="remember-user">
+                    <input type="checkbox" name="remember-user" id="remember-user-check">
+                    <span class="custom-checkbox"></span>
+                    <label for="remember-user-check">Remember me</label>
                 </fieldset>
-                <a href="">Forgot your password?</a>
+                <a href="#">Forgot your password?</a>
             </form>
         </div>
-        <div>
-            <button>Cancel</button>
-            <button>Log in</button>
+        <div class="buttons">
+            <button class="cancel-btn button drop-shadow">Cancel</button>
+            <button class="login-btn button drop-shadow">Log in</button>
         </div>
     </main>
     <footer>

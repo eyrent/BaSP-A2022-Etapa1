@@ -1,10 +1,12 @@
 body{
-    padding-top: 120px;
+    /* padding-top: 120px; */
     display: flex;
     flex-flow: row wrap;
+    justify-content: stretch;
     font-family: 'Roboto', sans-serif;
     transition: 0.3s ease-in-out;
-    height: auto;
+    color: #41426F;
+    align-content: space-between;
 }
 @media screen and (min-width: 768px) {
     .intro>* {

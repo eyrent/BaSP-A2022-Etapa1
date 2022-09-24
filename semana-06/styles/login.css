@@ -1,0 +1,117 @@
+.login-main {
+    display: flex;
+    flex-direction: column;
+    /* flex-grow: 1; */
+    align-items: center;
+    margin-inline: auto;
+    align-items: stretch;
+    row-gap: 35px;
+}
+.frame {
+    padding: 25px 60px;
+    border-radius: 30px;
+}
+.drop-shadow {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, .25);
+}
+.login-main h2 {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.18;
+    margin-bottom: 14px;
+}
+.login-main img {
+    width: 65%;
+    align-self: center;
+}
+footer {
+    position: sticky;
+    bottom: 0px;
+}
+.login-main form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 14px;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+.login-main .text-field {
+    font-size: 17px;
+    line-height: 20px;
+    padding: 10px;
+    color: rgba(0, 0, 0, .7);
+    border: none;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, .04);
+    box-sizing: content-box;
+}
+.login-main .text-field:focus{
+    outline: 1px #41426F solid;
+}
+#remember-user input {
+    opacity: 0;
+    position: absolute;
+    margin: 0;
+}
+#remember-user>* {
+    vertical-align: middle;
+}
+#remember-user:hover .custom-checkbox{
+    background-color: #ababba;
+}
+#remember-user input:checked ~ .custom-checkbox{
+    background-color: #41426F;
+    background-clip: content-box;
+    padding: 1px;
+}
+#remember-user:hover input:checked ~ .custom-checkbox{
+    background-color: hsl(239, 26%, 51%);
+    background-clip: content-box;
+    padding: 1px;
+}
+.custom-checkbox{
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    border: 1px #41426F solid;
+    box-sizing: border-box;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.login-main .button {
+    width: 150px;
+    height: 64px;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    transition: 0.25s ease-in;
+    transition-property: background, color, border;
+}
+.login-main .button:hover {
+    background-color: #ffffff;
+    color: #41426F;
+}
+.cancel-btn {
+    background-color: #49A37B;
+}
+.login-btn {
+    background-color: #41426F;
+    ;
+}
+.red-border{
+    border: 1px #ff0000 solid;
+}
+.red-border{
+    border: 1px #49A37B solid;
+}
+.hidden {
+    display: none;
+}
