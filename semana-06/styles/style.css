@@ -1,0 +1,83 @@
+body{
+    padding-top: 120px;
+    display: flex;
+    flex-flow: row;
+    font-family: 'Roboto', sans-serif;
+    transition: 0.3s ease-in-out;
+    height: auto;
+}
+@media screen and (min-width: 768px) {
+    .intro>* {
+        width: 45%;
+    }
+    .intro {
+        /* This value comes from the image height */
+        height: 285px;
+        padding-block: 45px;
+    }
+    /* Make img element appear and replace the background-image of the anchor */
+    .intro img {
+        display: initial;
+    }
+    .more {
+        height: auto;
+        margin-top: 0px;
+        padding-block: 0px;
+        background-image: none;
+    }
+    .features h3 {
+        line-height: 1.2em;
+    }
+    .features div {
+        flex: 1 0 48%;
+    }
+    .features .col {
+        padding-right: 0;
+    }
+    .benefits {
+        padding-inline: 10%;
+    }
+    .about-us {
+        width: auto;
+        padding-inline: 10%;
+    }
+    .site-map {
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 0px;
+        box-sizing: border-box;
+        width: 100%;
+        padding-block: 60px;
+        padding-inline: 7%;
+        margin-bottom: 0;;
+    }
+    .site-map .link-group {
+        padding: 8px 0px;
+        height: 100%;
+        border-bottom: none;
+    }
+    .site-map .separator {
+        display:initial;
+    }
+}
+@media screen and (min-width: 1024px){
+    aside {
+        display: flex;
+    }
+    .benefits {
+        padding-inline: 15px;
+    }
+    /* Make button disapear since the sidebar is displayed */
+    .burger-button {
+        display: none;
+    }
+    .about-us p{
+        order: 1;
+    }
+    .about-us img {
+        order: 2;
+   }
+    .about-us p:last-child{
+        order: 3;
+   }
+}
