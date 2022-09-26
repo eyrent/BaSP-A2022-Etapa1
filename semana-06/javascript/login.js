@@ -40,7 +40,7 @@ function validatePass(pass_string){
     var str_len = pass_string.length;
     return [(str_len > 7 && str_len < 21),
         chars.digits.length > 0,
-        (chars.lowerCase.length + chars.upperCase.length) > 0,
+        chars.upperCase.length > 0,
         (chars.other.length + chars.whiteSpace.length) === 0];
 }
 function isValidPass(pass_string){
@@ -51,18 +51,63 @@ function isValidPass(pass_string){
     }
     return valid;
 }
+var emailExpression = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+function isValidEmail(email_string){
+    if(email_string === ""){
+        return false;
+    } else return emailExpression.test(email_string);
+}
+function alertUser(){
+    var inputPass = document.getElementById("password").value;
+    var inputEmail = document.getElementById("email-address").value;
+    var successMsg = "You've logged in successfully.";
+    var generalErrorMsg = "Something went wrong. Please check: ";
+    var emailErrorMsg = "The e-mail address you entered does not look valid";
+    var passErrorMsg1 = "Your password length is incorrect.";
+    var passErrorMsg2 = "Your password must include at least a number.";
+    var passErrorMsg3 = "Your password must include at least an uppercase letter.";
+    var passErrorMsg4 = "Your password must NOT include spaces nor symbols.";
+    var passState = validatePass(inputPass); // [bool]
+    var emailState = isValidEmail(inputEmail); // bool
+    console.log(passState, emailState);
+    var alertText;
+    if(emailState && isValidPass(inputPass)){
+        alertText = successMsg;
+    } else {
+        alertText = generalErrorMsg;
+        if(!emailState) alertText += "\n" + emailErrorMsg;
+        if(!(passState[0]))alertText += "\n" + passErrorMsg1;
+        if(!(passState[1]))alertText += "\n" + passErrorMsg2;
+        if(!(passState[2]))alertText += "\n" + passErrorMsg3;
+        if(!(passState[3]))alertText += "\n" + passErrorMsg4;
+    }
+    alert(alertText);
+}
 window.onload = function(){
-    var passField = document.querySelector(".text-field[type=password]");
+    var passField = document.getElementById("password");
+    var emailField = document.getElementById("email-address");
+    var loginButton = document.getElementById("login-btn");
     passField.onblur = function(){
-        console.log(isValidPass(passField.value));
         if(isValidPass(passField.value)){
             passField.classList.add("green-border")
         } else{
             passField.classList.add("red-border");
         }
+    }
     passField.onfocus = function(){
         passField.classList.remove("red-border");
         passField.classList.remove("green-border");
     }
+    emailField.onblur = function(){
+        if(isValidEmail(emailField.value)){
+            emailField.classList.add("green-border");
+        } else{
+            emailField.classList.add("red-border");
+        }
     }
+    emailField.onfocus = function(){
+        emailField.classList.remove("red-border");
+        emailField.classList.remove("green-border");
+    }
+    loginButton.addEventListener("click", alertUser);
 }

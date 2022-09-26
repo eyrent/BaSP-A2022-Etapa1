@@ -99,10 +99,10 @@ footer {
     background-color: #ffffff;
     color: #41426F;
 }
-.cancel-btn {
+#cancel-btn {
     background-color: #49A37B;
 }
-.login-btn {
+#login-btn {
     background-color: #41426F;
     ;
 }
