@@ -73,6 +73,8 @@ function alertUser(){
     var alertText;
     if(emailState && isValidPass(inputPass)){
         alertText = successMsg;
+        alertText += "\nForm data: \n" + JSON.stringify(dataObj, null, "\t");
+        // See: https://stackoverflow.com/questions/3515523/javascript-how-to-generate-formatted-easy-to-read-json-straight-from-an-object
     } else {
         alertText = generalErrorMsg;
         if(!emailState) alertText += "\n" + emailErrorMsg;
