@@ -1,0 +1,9 @@
+input:focus {
+    outline: none;
+}
+.green-outline {
+    outline: 1px #49A37B solid;
+}
+.red-outline {
+    outline: 1px #FF0000 solid;
+}
