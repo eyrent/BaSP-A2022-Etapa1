@@ -53,6 +53,11 @@
     padding: 61px;
     justify-content: space-between;
 }
+#signup-form fieldset.buttons a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .burger-button {
     display: none;
 }
