@@ -1,5 +1,8 @@
 .signup-main {
     width: 95%;
+    background-image: url(../assets/img/signup-background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .welcome-msg {
     width: fit-content;
