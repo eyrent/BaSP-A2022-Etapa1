@@ -54,6 +54,14 @@ As an assignment for the **Become a Software Developer**  bootcamp (2022 edition
     - Functions
 Also, corrections provided in the feedback were made.
 
+### Week 6 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-06/views/index.html)</sup>
+- [Login](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-06/views/login.html) and [employee signup](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-06/views/sign-up.html) pages added.
+- This week's objective was to use Javascript to manipulate the DOM and provide verifications for the login and employee signup pages.
+- Color outlines (using `drop-shadow` to obtain `border-radius`) provide visual confirmation of the validity of the input data for each field.
+- When loggin in in or confirming sign up an `alert`is shown informing the user of the result (success or failure) of the process:
+    - If successful, it also show the data to be sent to the server in JSON readable syle.
+    - If errors were encountered, the user is adviced on where to find the mistake.
+- The new pages show basic responsive behaviour
 ## Known issues 🪛
 
 - At the moment, in Figma, there's no convenient way of showing a drop-down menu with choosable options. The dropdown menu of tasks will behave like a regular one.
