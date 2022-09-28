@@ -1,9 +1,69 @@
-input:focus {
+.signup-main {
+    width: 95%;
+}
+.welcome-msg {
+    width: fit-content;
+    margin-inline: auto;
+    margin-block: 56px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 47px;
+    text-transform: uppercase;
+}
+.signup-main h2 {
+    width: fit-content;
+    border-bottom: 3px #41426F solid;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 47x;
+    margin-left: 5%;
+    margin-bottom: 11px;
+}
+#signup-form {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    column-gap: 40px;
+    width: 70%;
+    margin-inline: auto;
+}
+#signup-form fieldset {
+    flex: 0 1 auto;
+    width: 100%;
+}
+#signup-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+#signup-form input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px #41426F solid;
+    border-radius:  4px;
+    font-size: 18px;
+    line-height: 37px;
+}
+#signup-form input:focus {
     outline: none;
 }
-.green-outline {
-    outline: 1px #49A37B solid;
+#signup-form fieldset.buttons {
+    display: flex;
+    padding: 61px;
+    justify-content: space-between;
 }
-.red-outline {
-    outline: 1px #FF0000 solid;
+.burger-button {
+    display: none;
+}
+@media screen and (min-width: 1024px) {
+    #signup-form fieldset {
+        width: 47%;
+    }
+    #signup-form .buttons {
+        width: 100%;
+    }
+    #signup-form fieldset:nth-last-child(4){
+        width: 100%;
+    }
 }

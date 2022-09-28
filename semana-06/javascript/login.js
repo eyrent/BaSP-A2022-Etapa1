@@ -73,7 +73,7 @@ function alertUser(){
     var alertText;
     if(emailState && isValidPass(inputPass)){
         alertText = successMsg;
-        alertText += "\nForm data: \n" + JSON.stringify(dataObj, null, "\t");
+        alertText += "\nForm data: \n" + JSON.stringify({email: inputEmail, password: inputPass}, null, "\t");
         // See: https://stackoverflow.com/questions/3515523/javascript-how-to-generate-formatted-easy-to-read-json-straight-from-an-object
     } else {
         alertText = generalErrorMsg;
@@ -91,25 +91,25 @@ window.onload = function(){
     var loginButton = document.getElementById("login-btn");
     passField.onblur = function(){
         if(isValidPass(passField.value)){
-            passField.classList.add("green-border")
+            passField.classList.add("green-outline")
         } else{
-            passField.classList.add("red-border");
+            passField.classList.add("red-outline");
         }
     }
     passField.onfocus = function(){
-        passField.classList.remove("red-border");
-        passField.classList.remove("green-border");
+        passField.classList.remove("red-outline");
+        passField.classList.remove("green-outline");
     }
     emailField.onblur = function(){
         if(isValidEmail(emailField.value)){
-            emailField.classList.add("green-border");
+            emailField.classList.add("green-outline");
         } else{
-            emailField.classList.add("red-border");
+            emailField.classList.add("red-outline");
         }
     }
     emailField.onfocus = function(){
-        emailField.classList.remove("red-border");
-        emailField.classList.remove("green-border");
+        emailField.classList.remove("red-outline");
+        emailField.classList.remove("green-outline");
     }
     loginButton.addEventListener("click", alertUser);
 }
