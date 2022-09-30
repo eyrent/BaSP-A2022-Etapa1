@@ -84,10 +84,69 @@ function alertUser(){
     }
     alert(alertText);
 }
+function showMsg(state){
+    if(state.loggedIn){
+        alert("You've logged in successfully. Redirecting to employee view.")
+    } else {
+        var alertText = "Login failed. Check your e-mail address and password."
+        console.log(state);
+        if(state.errors){
+            alertText += "\nError messages:\n";
+            alertText += state.errorMsg;
+        }
+        alert(alertText);
+    }
+}
+function serverLogin(credentials, loginState){
+    loginState.showSpinner = true;
+    var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/login"
+    var paramList = [];
+    for(prop in credentials){
+        paramList.push(prop + "=" + credentials[prop]);
+    }
+    fetch(apiURI + "?" + paramList.join("&"))
+    .then(function(loginApiResponse){
+        return loginApiResponse.json();
+    })
+    .then(function(responseObj){
+            if(responseObj.success){
+                loginState.loggedIn = true;
+                loginState.showSpinner = false;
+                loginState.errors = false;
+                loginState.errorMsg = "";
+                return loginState;
+            } else {
+                loginState.loggedIn = false;
+                loginState.showSpinner = false;
+                loginState.errorMsg = "";
+                if(responseObj.errors !== undefined){
+                    loginState.errors = true;
+                    for(var i = 0; i < responseObj.errors.length; i++){
+                        loginState.errorMsg += responseObj.errors[i].msg;
+                        if(i !== (responseObj.errors.length -1)){
+                            loginState.errorMsg += "\n";
+                        }
+                    }
+                } else{
+                    responseObj.errors = false;
+                }
+                return loginState;
+            }
+        })
+        .then(function(loginState) {
+            showMsg(loginState);
+        });
+}
 window.onload = function(){
     var passField = document.getElementById("password");
     var emailField = document.getElementById("email-address");
     var loginButton = document.getElementById("login-btn");
+    var loginState = {
+        showSpinner: false,
+        loggedIn:  false,
+        errors: false,
+        errorMsg: ""
+    };
     passField.onblur = function(){
         if(isValidPass(passField.value)){
             passField.classList.add("green-outline")
@@ -110,5 +169,11 @@ window.onload = function(){
         emailField.classList.remove("red-outline");
         emailField.classList.remove("green-outline");
     }
-    loginButton.addEventListener("click", alertUser);
+    loginButton.addEventListener("click", function(){
+        serverLogin({
+            email: emailField.value,
+            password: passField.value
+        },
+        loginState);
+    });
 }
