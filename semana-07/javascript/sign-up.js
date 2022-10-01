@@ -52,6 +52,10 @@ function validateDate(input_date){
     var today = new Date();
     return Date.parse(input_date) < today.getTime();
 }
+function formatDate(date_string){
+    dateParts = date_string.split("-");
+    return [dateParts[1], dateParts[2], dateParts[0]].join("/");
+}
 function validatePhone(phone_string){
     var charCount = countCharsByGroup(phone_string);
     return charCount.digits === 10 &&
@@ -103,7 +107,7 @@ function validateEmailAddress(email_string){
         return false;
     } else return emailExpression.test(email_string);
 }
-function alertUser(dataObj, validationObj){
+function alertUser(dataObj, validationObj, loginState){
     var alertText = "";
     var result = true;
     var errorMessages = [
@@ -122,8 +126,9 @@ function alertUser(dataObj, validationObj){
         result &&= validationObj[field];
     }
     if(result){
-        alertText = "Welcome to Trackgenix. Your account has been created.\nForm data\n" +
-            JSON.stringify(dataObj, null, "\t");
+        // alertText = "Welcome to Trackgenix. Your account has been created.\nForm data\n" +
+        //     JSON.stringify(dataObj, null, "\t");
+        serverLogin(dataObj, loginState);
     } else{
         alertText = "Your account cannot be created. Check the following:\n";
         errorNumber = 0;
@@ -131,33 +136,86 @@ function alertUser(dataObj, validationObj){
             if(!validationObj[field]) alertText += errorMessages[errorNumber] + "\n";
             errorNumber++;
         }
+        alert(alertText);
     }
-    alert(alertText);
+}
+function serverLogin(payload, signUpState){
+    signUpState.showSpinner = true;
+    var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/signup"
+    var paramList = [];
+    for(prop in payload){
+        paramList.push(prop + "=" + payload[prop]);
+    }
+    fetch(apiURI + "?" + paramList.join("&"))
+    .then(function(loginApiResponse){
+        return loginApiResponse.json();
+    })
+    .then(function(responseObj){
+            if(responseObj.success){
+                signUpState.userCreated = true;
+                signUpState.showSpinner = false;
+                signUpState.errors = false;
+                signUpState.errorMsg = "";
+                return signUpState;
+            } else {
+                signUpState.userCreated = false;
+                signUpState.showSpinner = false;
+                signUpState.errorMsg = "";
+                if(responseObj.errors !== undefined){
+                    signUpState.errors = true;
+                    for(var i = 0; i < responseObj.errors.length; i++){
+                        signUpState.errorMsg += responseObj.errors[i].msg;
+                        if(i !== (responseObj.errors.length -1)){
+                            signUpState.errorMsg += "\n";
+                        }
+                    }
+                } else{
+                    responseObj.errors = false;
+                }
+                return signUpState;
+            }
+        })
+        .then(function(signUpState) {
+            //console.log(signUpState);
+            showMsg(signUpState);
+        });
+}
+function showMsg(state){
+    if(state.userCreated){
+        alert("Welcome to Trackgenix. Your account has been created.")
+    } else {
+        var alertText = "We're sorry. We can't create your accound at the moment."
+        if(state.errors){
+            alertText += "\nError messages:\n";
+            alertText += state.errorMsg;
+        }
+        alert(alertText);
+    }
 }
 window.onload = function(){
     var payload = {
         name: "",
-        surname:"",
+        lastName:"",
         dni: "",
-        dateBirth: "",
+        dob: "",
         phone: "",
-        homeAddress: "",
+        address: "",
         city: "",
-        zipcode: "",
+        zip: "",
         email: "",
-        pass: ""
+        password: ""
     }
     var validation = {
         name: false,
-        surname: false,
+        lastName: false,
         dni: false,
-        dateBirth: false,
+        dob: false,
         phone: false,
-        homeAddress: false,
+        address: false,
         city: false,
-        zipcode: false,
+        zip: false,
         email: false,
-        pass: false
+        password: false
     }
     var nameField = document.getElementById("name-field");
     nameField.onblur = function(){
@@ -170,9 +228,9 @@ window.onload = function(){
     }
     var surnameField = document.getElementById("surname-field");
     surnameField.onblur = function(){
-        payload.surname = surnameField.value;
-        validation.surname = validateName(payload.surname);
-        surnameField.classList.add(validation.surname ? "green-outline" : "red-outline");
+        payload.lastName = surnameField.value;
+        validation.lastName = validateName(payload.lastName);
+        surnameField.classList.add(validation.lastName ? "green-outline" : "red-outline");
     }
     surnameField.onfocus = function(){
         surnameField.classList.remove("green-outline","red-outline");
@@ -188,9 +246,9 @@ window.onload = function(){
     }
     var dateBirthField = document.getElementById("date-birth-field");
     dateBirthField.onblur = function(){
-        payload.dateBirth = dateBirthField.value;
-        validation.dateBirth = validateDate(payload.dateBirth);
-        dateBirthField.classList.add(validation.dateBirth ? "green-outline" : "red-outline");
+        payload.dob = /* dateBirthField.value;  */formatDate(dateBirthField.value);
+        validation.dob = validateDate(payload.dob);
+        dateBirthField.classList.add(validation.dob ? "green-outline" : "red-outline");
     }
     dateBirthField.onfocus = function(){
         dateBirthField.classList.remove("green-outline","red-outline");
@@ -206,9 +264,9 @@ window.onload = function(){
     }
     var homeAddressField = document.getElementById("home-address-field");
     homeAddressField.onblur = function(){
-        payload.homeAddress = homeAddressField.value;
-        validation.homeAddress = validateHomeAdress(payload.homeAddress);
-        homeAddressField.classList.add(validation.homeAddress ? "green-outline" : "red-outline");
+        payload.address = homeAddressField.value;
+        validation.address = validateHomeAdress(payload.address);
+        homeAddressField.classList.add(validation.address ? "green-outline" : "red-outline");
     }
     homeAddressField.onfocus = function(){
         homeAddressField.classList.remove("green-outline","red-outline");
@@ -224,9 +282,9 @@ window.onload = function(){
     }
     var zipcodeField = document.getElementById("zipcode-field");
     zipcodeField.onblur = function(){
-        payload.zipcode = zipcodeField.value;
-        validation.zipcode = validateZipCode(payload.zipcode);
-        zipcodeField.classList.add(validation.zipcode ? "green-outline" : "red-outline");
+        payload.zip = zipcodeField.value;
+        validation.zip = validateZipCode(payload.zip);
+        zipcodeField.classList.add(validation.zip ? "green-outline" : "red-outline");
     }
     zipcodeField.onfocus = function(){
         zipcodeField.classList.remove("green-outline","red-outline");
@@ -242,23 +300,34 @@ window.onload = function(){
     }
     var passField = document.getElementById("pass-field");
     passField.onblur = function(){
-        payload.pass = passField.value;
-        validation.pass = validatePass(payload.pass);
-        passField.classList.add(validation.pass ? "green-outline" : "red-outline");
+        payload.password = passField.value;
+        validation.password = validatePass(payload.password);
+        passField.classList.add(validation.password ? "green-outline" : "red-outline");
     }
     passField.onfocus = function(){
         passField.classList.remove("green-outline","red-outline");
     }
     var passConfirmField = document.getElementById("pass-confirm-field");
     passConfirmField.onblur = function(){
-        validation.pass &&= passField.value === passConfirmField.value;
-        passConfirmField.classList.add(validation.pass ? "green-outline" : "red-outline");
+        validation.password &&= passField.value === passConfirmField.value;
+        passConfirmField.classList.add(validation.password ? "green-outline" : "red-outline");
     }
     passConfirmField.onfocus = function(){
         passConfirmField.classList.remove("green-outline","red-outline");
     }
+    // Prevent page from reloading after form submition
+    var signupForm = document.querySelector("form")
+        .addEventListener("submit", function(e){
+            e.preventDefault();
+        })
     var submitBtn = document.getElementById("signup-btn");
     submitBtn.addEventListener("click", function () {
-        alertUser(payload, validation);
+        alertUser(payload, validation, loginState);
         });
+    var loginState = {
+        showSpinner: false,
+        userCreated:  false,
+        errors: false,
+        errorMsg: ""
+    };
 }
