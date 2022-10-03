@@ -52,9 +52,13 @@ function validateDate(input_date){
     var today = new Date();
     return Date.parse(input_date) < today.getTime();
 }
-function formatDate(date_string){
+function APIformatDate(date_string){
     dateParts = date_string.split("-");
     return [dateParts[1], dateParts[2], dateParts[0]].join("/");
+}
+function ISOformatDate(date_string){
+    dateParts = date_string.split("/");
+    return [dateParts[2], dateParts[0], dateParts[1]].join("-");
 }
 function validatePhone(phone_string){
     var charCount = countCharsByGroup(phone_string);
@@ -156,6 +160,7 @@ function serverLogin(payload, signUpState){
                 signUpState.showSpinner = false;
                 signUpState.errors = false;
                 signUpState.errorMsg = "";
+                storeAPIResponseData(responseObj.data);
                 return signUpState;
             } else {
                 signUpState.userCreated = false;
@@ -176,7 +181,6 @@ function serverLogin(payload, signUpState){
             }
         })
         .then(function(signUpState) {
-            //console.log(signUpState);
             showMsg(signUpState);
         });
 }
@@ -190,6 +194,19 @@ function showMsg(state){
             alertText += state.errorMsg;
         }
         alert(alertText);
+    }
+}
+function storeAPIResponseData(data){
+    for(key in data){
+        localStorage.setItem(key, data[key]);
+    }
+}
+function restoreAPIResponseData(dataObj){
+    var value;
+    for(prop in dataObj){
+        if((value = localStorage.getItem(prop)) !== null){
+            dataObj[prop] = value;
+        }
     }
 }
 window.onload = function(){
@@ -217,7 +234,13 @@ window.onload = function(){
         email: false,
         password: false
     }
+    restoreAPIResponseData(payload);
+
     var nameField = document.getElementById("name-field");
+    if(payload.name !== null) {
+        nameField.value = payload.name;
+        validation.name = validateName(payload.name);
+    }
     nameField.onblur = function(){
         payload.name = nameField.value;
         validation.name = validateName(payload.name);
@@ -227,6 +250,10 @@ window.onload = function(){
         nameField.classList.remove("green-outline","red-outline");
     }
     var surnameField = document.getElementById("surname-field");
+    if(payload.lastName !== null) {
+        surnameField.value = payload.lastName;
+        validation.lastName = validateName(payload.lastName);
+    }
     surnameField.onblur = function(){
         payload.lastName = surnameField.value;
         validation.lastName = validateName(payload.lastName);
@@ -236,6 +263,10 @@ window.onload = function(){
         surnameField.classList.remove("green-outline","red-outline");
     }
     var dniField = document.getElementById("dni-field");
+    if(payload.dni !== null) {
+        dniField.value = payload.dni
+        validation.dni = validateDni(payload.dni);
+    };
     dniField.onblur = function(){
         payload.dni = dniField.value;
         validation.dni = validateDni(payload.dni);
@@ -245,8 +276,12 @@ window.onload = function(){
         dniField.classList.remove("green-outline","red-outline");
     }
     var dateBirthField = document.getElementById("date-birth-field");
+    if(payload.dob !== null) {
+        dateBirthField.value = ISOformatDate(payload.dob);
+        validation.dob = validateDate(payload.dob);
+    }
     dateBirthField.onblur = function(){
-        payload.dob = /* dateBirthField.value;  */formatDate(dateBirthField.value);
+        payload.dob = /* dateBirthField.value;  */APIformatDate(dateBirthField.value);
         validation.dob = validateDate(payload.dob);
         dateBirthField.classList.add(validation.dob ? "green-outline" : "red-outline");
     }
@@ -254,6 +289,10 @@ window.onload = function(){
         dateBirthField.classList.remove("green-outline","red-outline");
     }
     var phoneField = document.getElementById("phone-field");
+    if(payload.phone !== null) {
+        phoneField.value = payload.phone;
+        validation.phone = validatePhone(payload.phone);
+    }
     phoneField.onblur = function(){
         payload.phone = phoneField.value;
         validation.phone = validatePhone(payload.phone);
@@ -263,6 +302,10 @@ window.onload = function(){
         phoneField.classList.remove("green-outline","red-outline");
     }
     var homeAddressField = document.getElementById("home-address-field");
+    if(payload.address !== null){
+        homeAddressField.value = payload.address;
+        validation.address = validateHomeAdress(payload.address);
+    }
     homeAddressField.onblur = function(){
         payload.address = homeAddressField.value;
         validation.address = validateHomeAdress(payload.address);
@@ -272,6 +315,10 @@ window.onload = function(){
         homeAddressField.classList.remove("green-outline","red-outline");
     }
     var cityField = document.getElementById("city-field");
+    if(payload.city !== null){
+        cityField.value = payload.city;
+        validation.city = validateCity(payload.city);
+    }
     cityField.onblur = function(){
         payload.city = cityField.value;
         validation.city = validateCity(payload.city);
@@ -281,6 +328,10 @@ window.onload = function(){
         cityField.classList.remove("green-outline","red-outline");
     }
     var zipcodeField = document.getElementById("zipcode-field");
+    if(payload.zip !== null) {
+        zipcodeField.value = payload.zip;
+        validation.zip = validateZipCode(payload.zip);
+    }
     zipcodeField.onblur = function(){
         payload.zip = zipcodeField.value;
         validation.zip = validateZipCode(payload.zip);
@@ -290,6 +341,10 @@ window.onload = function(){
         zipcodeField.classList.remove("green-outline","red-outline");
     }
     var emailField = document.getElementById("email-address-field");
+    if(payload.email !== null) {
+        emailField.value = payload.email;
+        validation.email = validateEmailAddress(payload.email);
+    }
     emailField.onblur = function(){
         payload.email = emailField.value;
         validation.email = validateEmailAddress(payload.email);
@@ -299,6 +354,10 @@ window.onload = function(){
         emailField.classList.remove("green-outline","red-outline");
     }
     var passField = document.getElementById("pass-field");
+    if(payload.password !== null) {
+        passField.value = payload.password;
+        validation.password = validatePass(payload.password);
+    }
     passField.onblur = function(){
         payload.password = passField.value;
         validation.password = validatePass(payload.password);
@@ -308,6 +367,7 @@ window.onload = function(){
         passField.classList.remove("green-outline","red-outline");
     }
     var passConfirmField = document.getElementById("pass-confirm-field");
+    passConfirmField.value = passField.value;
     passConfirmField.onblur = function(){
         validation.password &&= passField.value === passConfirmField.value;
         passConfirmField.classList.add(validation.password ? "green-outline" : "red-outline");
