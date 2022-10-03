@@ -382,9 +382,15 @@ window.onload = function(){
         })
     var submitBtn = document.getElementById("signup-btn");
     submitBtn.addEventListener("click", function () {
-        alertUser(payload, validation, loginState);
-        });
-    var loginState = {
+        alertUser(payload, validation, signupState);
+    });
+    var modalOKBtn = document.querySelector(".modal-box button");
+    var modal = document.querySelector(".modal");
+    console.log(modal, modalOKBtn);
+    modalOKBtn.addEventListener("click", function(){
+        modal.classList.add("hidden");
+    })
+    var signupState = {
         showSpinner: false,
         userCreated:  false,
         errors: false,
