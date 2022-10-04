@@ -55,10 +55,15 @@ function validateDate(input_date){
 function APIformatDate(date_string){
     dateParts = date_string.split("-");
     return [dateParts[1], dateParts[2], dateParts[0]].join("/");
+    // var date = new Date(date_string);
+    // return [date.getMonth(), date.getDate(), date.getFullYear()].join("/");
+
 }
 function ISOformatDate(date_string){
     dateParts = date_string.split("/");
     return [dateParts[2], dateParts[0], dateParts[1]].join("-");
+    // var date = new Date(date_string);
+    // return [ date.getFullYear(), date.getMonth(), date.getDate()].join("-");
 }
 function validatePhone(phone_string){
     var charCount = countCharsByGroup(phone_string);
@@ -111,39 +116,65 @@ function validateEmailAddress(email_string){
         return false;
     } else return emailExpression.test(email_string);
 }
+function modalAlert(heading_str, text_str, errorMsgs_array){
+    var modalContentHtmlNode = document.querySelector(".modal-content");
+    // remove elements left by previous alert
+    var childNode;
+    while((childNode = modalContentHtmlNode.firstChild).tagName !== "BUTTON"){
+        childNode.remove();
+    }
+    var modalErrorList = document.createElement("ul");
+    if(errorMsgs_array !== undefined && errorMsgs_array !== []){
+        for(var i = 0; i < errorMsgs_array.length; i++){
+            var newErrorMsg = modalErrorList.appendChild(document.createElement("li"));
+            newErrorMsg.textContent = errorMsgs_array[i];
+        }
+        modalContentHtmlNode.prepend(modalErrorList);
+    }
+    if(text_str !== undefined && text_str !== ""){
+        var modalText = document.createElement("p");
+        modalText.textContent = text_str;
+        modalContentHtmlNode.prepend(modalText);
+    }
+    if(heading_str !== undefined && heading_str !== ""){
+        var modalHeading = document.createElement("h3");
+        modalHeading.textContent = heading_str;
+        modalContentHtmlNode.prepend(modalHeading);
+    }
+    document.querySelector(".modal").classList.remove("hidden");
+}
 function alertUser(dataObj, validationObj, loginState){
+    var alertErrorMsgs = [];
     var alertText = "";
     var result = true;
     var errorMessages = [
-        "\t- Your name must be al least 4 characters long. Numbers and symbols are not allowed",
-        "\t- Your surname must be al least 4 characters long. Numbers and symbols are not allowed",
-        "\t- Your DNI number must be al least 8 digits long. Just the numbers.",
-        "\t- There's an issue with your birth date.",
-        "\t- Your phone number is 10 digits long. Only numbers are allowed",
-        "\t- Your home address doesn't look right. Include street name (at least 6 letters long) and number. Don't use symbols.",
-        "\t- Cities are at least 4 alphanumeric characters long.",
-        "\t- Zip codes are 4-5 digits long. Just the numbers.",
-        "\t- Your email address doesn't look right.",
-        "\t- Passwords are 8 to 20 characters long. They must contain at least a number and an uppercase letter. Spaces and symbols are not allowed. Make sure both password fields are the same."
+        "Your name must be al least 4 characters long. Numbers and symbols are not allowed",
+        "Your surname must be al least 4 characters long. Numbers and symbols are not allowed",
+        "Your DNI number must be al least 8 digits long. Just the numbers.",
+        "There's an issue with your birth date.",
+        "Your phone number is 10 digits long. Only numbers are allowed",
+        "Your home address doesn't look right. Include street name (at least 6 letters long) and number. Don't use symbols.",
+        "Cities are at least 4 alphanumeric characters long.",
+        "Zip codes are 4-5 digits long. Just the numbers.",
+        "Your email address doesn't look right.",
+        "Passwords are 8 to 20 characters long. They must contain at least a number and an uppercase letter. Spaces and symbols are not allowed. Make sure both password fields are the same."
     ]
     for (var field in validationObj){
         result &&= validationObj[field];
     }
     if(result){
-        // alertText = "Welcome to Trackgenix. Your account has been created.\nForm data\n" +
-        //     JSON.stringify(dataObj, null, "\t");
-        serverLogin(dataObj, loginState);
+        serverCreateUser(dataObj, loginState);
     } else{
-        alertText = "Your account cannot be created. Check the following:\n";
+        alertText = "Some fields don't look right. Check the following:\n";
         errorNumber = 0;
         for(field in validationObj){
-            if(!validationObj[field]) alertText += errorMessages[errorNumber] + "\n";
+            if(!validationObj[field]) alertErrorMsgs.push(errorMessages[errorNumber]);
             errorNumber++;
         }
-        alert(alertText);
+        modalAlert("Ups!", alertText, alertErrorMsgs);
     }
 }
-function serverLogin(payload, signUpState){
+function serverCreateUser(payload, signUpState){
     signUpState.showSpinner = true;
     var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/signup"
     var paramList = [];
@@ -159,20 +190,17 @@ function serverLogin(payload, signUpState){
                 signUpState.userCreated = true;
                 signUpState.showSpinner = false;
                 signUpState.errors = false;
-                signUpState.errorMsg = "";
+                signUpState.errorMsgs = [];
                 storeAPIResponseData(responseObj.data);
                 return signUpState;
             } else {
                 signUpState.userCreated = false;
                 signUpState.showSpinner = false;
-                signUpState.errorMsg = "";
+                signUpState.errorMsgs = [];
                 if(responseObj.errors !== undefined){
                     signUpState.errors = true;
                     for(var i = 0; i < responseObj.errors.length; i++){
-                        signUpState.errorMsg += responseObj.errors[i].msg;
-                        if(i !== (responseObj.errors.length -1)){
-                            signUpState.errorMsg += "\n";
-                        }
+                        signUpState.errorMsgs.push(responseObj.errors[i].msg);
                     }
                 } else{
                     responseObj.errors = false;
@@ -185,15 +213,15 @@ function serverLogin(payload, signUpState){
         });
 }
 function showMsg(state){
+    var errorMsgs_array = [];
     if(state.userCreated){
-        alert("Welcome to Trackgenix. Your account has been created.")
+        modalAlert("Welcome to Trackgenix", "Your account has been created.");
     } else {
-        var alertText = "We're sorry. We can't create your accound at the moment."
-        if(state.errors){
-            alertText += "\nError messages:\n";
-            alertText += state.errorMsg;
+        var alertText = "We can't create your accound at the moment. Server response is:"
+        if(state.errorMsgs.length > 0){
+            errorMsgs_array = state.errorMsgs;
         }
-        alert(alertText);
+        modalAlert("We're sorry!",alertText, errorMsgs_array);
     }
 }
 function storeAPIResponseData(data){
@@ -386,7 +414,7 @@ window.onload = function(){
     });
     var modalOKBtn = document.querySelector(".modal-box button");
     var modal = document.querySelector(".modal");
-    console.log(modal, modalOKBtn);
+    // console.log(modal, modalOKBtn);
     modalOKBtn.addEventListener("click", function(){
         modal.classList.add("hidden");
     })
@@ -394,6 +422,6 @@ window.onload = function(){
         showSpinner: false,
         userCreated:  false,
         errors: false,
-        errorMsg: ""
+        errorMsgs: []
     };
 }

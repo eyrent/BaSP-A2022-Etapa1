@@ -25,14 +25,18 @@
     text-align: center;
     margin-bottom: 10px;
 }
+.modal-content p {
+    margin-block: 15px;
+    text-align: center;
+}
 .modal-content ul{
-    margin-top: 20px;
+    margin-block: 20px;
     margin-left: 30px;
     list-style: disc;
 }
 .modal-content button {
     display: block;
-    margin-left: auto;
+    margin-inline: auto;
     width: 100px;
     height: 30px;
     font-size: 15px;
@@ -47,7 +51,4 @@
 .modal-content button:hover {
     background-color: #ffffff;
     color: #41426F;
-}
-.cancel-btn {
-
 }
