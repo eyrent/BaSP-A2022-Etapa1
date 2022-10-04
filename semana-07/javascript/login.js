@@ -57,47 +57,67 @@ function isValidEmail(email_string){
         return false;
     } else return emailExpression.test(email_string);
 }
-function alertUser(){
-    var inputPass = document.getElementById("password").value;
-    var inputEmail = document.getElementById("email-address").value;
-    var successMsg = "You've logged in successfully.";
-    var generalErrorMsg = "Something went wrong. Please check: ";
+function alertUser(dataObj){
     var emailErrorMsg = "The e-mail address you entered does not look valid";
     var passErrorMsg1 = "Your password length is incorrect.";
     var passErrorMsg2 = "Your password must include at least a number.";
     var passErrorMsg3 = "Your password must include at least an uppercase letter.";
     var passErrorMsg4 = "Your password must NOT include spaces nor symbols.";
-    var passState = validatePass(inputPass); // [bool]
-    var emailState = isValidEmail(inputEmail); // bool
-    console.log(passState, emailState);
-    var alertText;
-    if(emailState && isValidPass(inputPass)){
-        alertText = successMsg;
-        alertText += "\nForm data: \n" + JSON.stringify({email: inputEmail, password: inputPass}, null, "\t");
+    var passState = validatePass(dataObj.password); // [bool]
+    var emailState = isValidEmail(dataObj.email); // bool
+    if(emailState && isValidPass(dataObj.password)){
+        serverLogin(dataObj);
     } else {
-        alertText = generalErrorMsg;
-        if(!emailState) alertText += "\n" + emailErrorMsg;
-        if(!(passState[0]))alertText += "\n" + passErrorMsg1;
-        if(!(passState[1]))alertText += "\n" + passErrorMsg2;
-        if(!(passState[2]))alertText += "\n" + passErrorMsg3;
-        if(!(passState[3]))alertText += "\n" + passErrorMsg4;
+        var errorMsgs_array = [];
+        if(!emailState) errorMsgs_array.push(emailErrorMsg);
+        if(!(passState[0]))errorMsgs_array.push(passErrorMsg1);
+        if(!(passState[1]))errorMsgs_array.push(passErrorMsg2);
+        if(!(passState[2]))errorMsgs_array.push(passErrorMsg3);
+        if(!(passState[3]))errorMsgs_array.push(passErrorMsg4);
+        modalAlert("Ups!", "Something went wrong. Please check: ", errorMsgs_array);
     }
-    alert(alertText);
+}
+function modalAlert(heading_str, text_str, errorMsgs_array){
+    var modalContentHtmlNode = document.querySelector(".modal-content");
+    // remove elements left by previous alert
+    var childNode;
+    while((childNode = modalContentHtmlNode.firstChild).tagName !== "BUTTON"){
+        childNode.remove();
+    }
+    var modalErrorList = document.createElement("ul");
+    if(errorMsgs_array !== undefined && errorMsgs_array !== []){
+        for(var i = 0; i < errorMsgs_array.length; i++){
+            var newErrorMsg = modalErrorList.appendChild(document.createElement("li"));
+            newErrorMsg.textContent = errorMsgs_array[i];
+        }
+        modalContentHtmlNode.prepend(modalErrorList);
+    }
+    if(text_str !== undefined && text_str !== ""){
+        var modalText = document.createElement("p");
+        modalText.textContent = text_str;
+        modalContentHtmlNode.prepend(modalText);
+    }
+    if(heading_str !== undefined && heading_str !== ""){
+        var modalHeading = document.createElement("h3");
+        modalHeading.textContent = heading_str;
+        modalContentHtmlNode.prepend(modalHeading);
+    }
+    document.querySelector(".modal").classList.remove("hidden");
 }
 function showMsg(state){
     if(state.loggedIn){
-        alert("You've logged in successfully. Redirecting to employee view.")
+        modalAlert("Welcome to Trackgenix", "Login successfull. Redirecting to home page.");
     } else {
-        var alertText = "Login failed. Check your e-mail address and password."
-        console.log(state);
-        if(state.errors){
-            alertText += "\nError messages:\n";
-            alertText += state.errorMsg;
-        }
-        alert(alertText);
+        modalAlert("Login failed","Check your e-mail address and password.");
     }
 }
-function serverLogin(credentials, loginState){
+function serverLogin(credentials){
+    var loginState = {
+        showSpinner: false,
+        loggedIn:  false,
+        errors: false,
+        errorMsgs: []
+    };
     loginState.showSpinner = true;
     var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/login"
     var paramList = [];
@@ -118,17 +138,13 @@ function serverLogin(credentials, loginState){
             } else {
                 loginState.loggedIn = false;
                 loginState.showSpinner = false;
-                loginState.errorMsg = "";
                 if(responseObj.errors !== undefined){
                     loginState.errors = true;
                     for(var i = 0; i < responseObj.errors.length; i++){
-                        loginState.errorMsg += responseObj.errors[i].msg;
-                        if(i !== (responseObj.errors.length -1)){
-                            loginState.errorMsg += "\n";
-                        }
+                        loginState.errorMsgs_array.push(responseObj.errors[i].msg);
                     }
                 } else{
-                    responseObj.errors = false;
+                    loginState.errors = false;
                 }
                 return loginState;
             }
@@ -141,12 +157,6 @@ window.onload = function(){
     var passField = document.getElementById("password");
     var emailField = document.getElementById("email-address");
     var loginButton = document.getElementById("login-btn");
-    var loginState = {
-        showSpinner: false,
-        loggedIn:  false,
-        errors: false,
-        errorMsg: ""
-    };
     passField.onblur = function(){
         if(isValidPass(passField.value)){
             passField.classList.add("green-outline")
@@ -169,11 +179,15 @@ window.onload = function(){
         emailField.classList.remove("red-outline");
         emailField.classList.remove("green-outline");
     }
+    var modalOKBtn = document.querySelector(".modal-box button");
+    var modal = document.querySelector(".modal");
+    modalOKBtn.addEventListener("click", function(){
+        modal.classList.add("hidden");
+    })
     loginButton.addEventListener("click", function(){
-        serverLogin({
+        alertUser({
             email: emailField.value,
             password: passField.value
-        },
-        loginState);
+        });
     });
 }
