@@ -116,15 +116,20 @@ function validateEmailAddress(email_string){
         return false;
     } else return emailExpression.test(email_string);
 }
-function modalAlert(heading_str, text_str, errorMsgs_array){
+function modalAlert(heading_str, text_str, errorMsgs_array, preformatedText_str){
     var modalContentHtmlNode = document.querySelector(".modal-content");
     // remove elements left by previous alert
     var childNode;
     while((childNode = modalContentHtmlNode.firstChild).tagName !== "BUTTON"){
         childNode.remove();
     }
-    var modalErrorList = document.createElement("ul");
+    if(preformatedText_str !== undefined && preformatedText_str !== ""){
+        var modalPreformatedText = document.createElement("pre");
+        modalPreformatedText.textContent = preformatedText_str;
+        modalContentHtmlNode.prepend(modalPreformatedText);
+    }
     if(errorMsgs_array !== undefined && errorMsgs_array !== []){
+        var modalErrorList = document.createElement("ul");
         for(var i = 0; i < errorMsgs_array.length; i++){
             var newErrorMsg = modalErrorList.appendChild(document.createElement("li"));
             newErrorMsg.textContent = errorMsgs_array[i];
@@ -143,7 +148,7 @@ function modalAlert(heading_str, text_str, errorMsgs_array){
     }
     document.querySelector(".modal").classList.remove("hidden");
 }
-function alertUser(dataObj, validationObj, loginState){
+function alertUser(dataObj, validationObj){
     var alertErrorMsgs = [];
     var alertText = "";
     var result = true;
@@ -163,7 +168,7 @@ function alertUser(dataObj, validationObj, loginState){
         result &&= validationObj[field];
     }
     if(result){
-        serverCreateUser(dataObj, loginState);
+        serverCreateUser(dataObj);
     } else{
         alertText = "Some fields don't look right. Check the following:\n";
         errorNumber = 0;
@@ -174,7 +179,14 @@ function alertUser(dataObj, validationObj, loginState){
         modalAlert("Ups!", alertText, alertErrorMsgs);
     }
 }
-function serverCreateUser(payload, signUpState){
+function serverCreateUser(payload){
+    var signUpState = {
+        showSpinner: false,
+        userCreated:  false,
+        errors: false,
+        errorMsgs: [],
+        data: {}
+    };
     signUpState.showSpinner = true;
     var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/signup"
     var paramList = [];
@@ -191,6 +203,7 @@ function serverCreateUser(payload, signUpState){
                 signUpState.showSpinner = false;
                 signUpState.errors = false;
                 signUpState.errorMsgs = [];
+                signUpState.data = responseObj.data;
                 storeAPIResponseData(responseObj.data);
                 return signUpState;
             } else {
@@ -215,7 +228,10 @@ function serverCreateUser(payload, signUpState){
 function showMsg(state){
     var errorMsgs_array = [];
     if(state.userCreated){
-        modalAlert("Welcome to Trackgenix", "Your account has been created.");
+        modalAlert("Welcome to Trackgenix!",
+            "Your account has been created.",
+            [],
+            JSON.stringify(state.data, null, "\n"));
     } else {
         var alertText = "We can't create your accound at the moment. Server response is:"
         if(state.errorMsgs.length > 0){
@@ -410,7 +426,7 @@ window.onload = function(){
         })
     var submitBtn = document.getElementById("signup-btn");
     submitBtn.addEventListener("click", function () {
-        alertUser(payload, validation, signupState);
+        alertUser(payload, validation);
     });
     var modalOKBtn = document.querySelector(".modal-box button");
     var modal = document.querySelector(".modal");
@@ -418,10 +434,4 @@ window.onload = function(){
     modalOKBtn.addEventListener("click", function(){
         modal.classList.add("hidden");
     })
-    var signupState = {
-        showSpinner: false,
-        userCreated:  false,
-        errors: false,
-        errorMsgs: []
-    };
 }
