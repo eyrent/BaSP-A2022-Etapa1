@@ -38,6 +38,9 @@ body{
 .hidden {
     display: none;
 }
+.visible {
+    visibility: visible!important;
+}
 .frame {
     padding: 25px 60px;
     border-radius: 30px;

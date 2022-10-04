@@ -62,6 +62,11 @@
     justify-content: center;
     align-items: center;
 }
+fieldset .error-msg {
+    margin-top: 5px;
+    color: #ff0000;
+    visibility: hidden;
+}
 .burger-button {
     display: none;
 }

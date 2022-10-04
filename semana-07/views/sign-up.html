@@ -28,46 +28,57 @@
             <fieldset>
                 <label for="name-field">Name</label>
                 <input type="text" id="name-field">
+                <p class="error-msg">At least 4 characters. Numbers and symbols not allowed.</p>
             </fieldset>
             <fieldset>
                 <label for="surname-field">Surname</label>
                 <input type="text" id="surname-field">
+                <p class="error-msg">At least 4 characters. Numbers and symbols not allowed.</p>
             </fieldset>
             <fieldset>
                 <label for="dni-field">DNI number</label>
                 <input type="text" id="dni-field">
+                <p class="error-msg">Al least 8 numbers long. Letters and symbols not allowed.</p>
             </fieldset>
             <fieldset>
                 <label for="date-birth-field">Date of birth</label>
                 <input type="date" id="date-birth-field">
+                <p class="error-msg">Your birth date can't be in the future.<p>
             </fieldset>
             <fieldset>
                 <label for="phone-field">Phone number</label>
                 <input type="text" id="phone-field">
+                <p class="error-msg">Phone is 10 digits long. Just numbers.<p>
             </fieldset>
             <fieldset>
                 <label for="home-address-field">Home address</label>
                 <input type="text" id="home-address-field">
+                <p class="error-msg">At least 6 characters long. Include street name and number separated by a space.<p>
             </fieldset>
             <fieldset>
                 <label for="city-field">City</label>
                 <input type="text" id="city-field">
+                <p class="error-msg">At least 4 characters. Don't use symbols.</p>
             </fieldset>
             <fieldset>
                 <label for="zipcode-field">Zip code</label>
                 <input type="text" id="zipcode-field">
+                <p class="error-msg">4-5 digits long. Only numbers.</p>
             </fieldset>
             <fieldset>
                 <label for="email-address-field">E-mail address</label>
                 <input type="text" id="email-address-field">
+                <p class="error-msg">This e-mail address is not valid.</p>
             </fieldset>
             <fieldset>
                 <label for="pass-field">Password</label>
                 <input type="password" id="pass-field">
+                <p class="error-msg">8-20 characters long. Must have at least a number and an uppercase letter. Letters and symbols not allowed.</p>
             </fieldset>
             <fieldset>
                 <label for="pass-confirm-field">Confirm password</label>
                 <input type="password" id="pass-confirm-field">
+                <p class="error-msg">Both password fields must match.</p>
             </fieldset>
             <fieldset class="buttons">
                 <a href="../views/index.html" id="cancel-btn" class="cancel-btn button drop-shadow">Cancel</a>
