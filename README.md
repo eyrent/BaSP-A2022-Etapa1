@@ -62,6 +62,18 @@ Also, corrections provided in the feedback were made.
     - If successful, it also show the data to be sent to the server in JSON readable syle.
     - If errors were encountered, the user is adviced on where to find the mistake.
 - The new pages show basic responsive behaviour
+
+### Week 7 <sup>[[view]](https://eyrent.github.io/BaSP-A2022-Etapa1/semana-07/views/index.html)</sup>
+- 'Login' and 'employee sign up' **pages can now talk to an [API](https://basp-m2022-api-rest-server.herokuapp.com) to perform server side validation** of user input. The `fetch()` method was used for this.
+- The use of **_Promises_** was necessary due to `fetch()` being an asynchronous API. A `catch` statement was included to handle error while communicating with the API endpoints.
+- Users are notified through the use of an **stylized modal message box** with OK button. A `modalAlert(string, string, [string], string)` function calls the modal with four parameters: modal heading, main text, an error messages array (listed with bullets), and a preformated text option for displaying API messages and JSON objects. All fields are optional (can be `undefined`).
+- Upon success at creating a new employee account, **the signup page stores the API's response data in the browser's _Local Storage_**
+- There have been minor style adjustments:
+  - `login.html` footer is not fixed anymore
+  - More margin for login form
+  - E-mail field in `sign-up.html` is aligned with the rest of fields.
+- `sign-up.html` now displays small text under each field in case validation fails to provide users with a clue of what may be wrong. They include an icon from [Google's Material Design symbols](https://fonts.google.com/icons) Icons for web.
+
 ## Known issues 🪛
 
 - At the moment, in Figma, there's no convenient way of showing a drop-down menu with choosable options. The dropdown menu of tasks will behave like a regular one.
