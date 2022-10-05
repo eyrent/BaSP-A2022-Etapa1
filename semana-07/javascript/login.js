@@ -63,8 +63,8 @@ function alertUser(dataObj){
     var passErrorMsg2 = "Your password must include at least a number.";
     var passErrorMsg3 = "Your password must include at least an uppercase letter.";
     var passErrorMsg4 = "Your password must NOT include spaces nor symbols.";
-    var passState = validatePass(dataObj.password); // [bool]
-    var emailState = isValidEmail(dataObj.email); // bool
+    var passState = validatePass(dataObj.password);
+    var emailState = isValidEmail(dataObj.email);
     if(emailState && isValidPass(dataObj.password)){
         serverLogin(dataObj);
     } else {
@@ -113,12 +113,10 @@ function showMsg(state){
 }
 function serverLogin(credentials){
     var loginState = {
-        showSpinner: false,
         loggedIn:  false,
         errors: false,
         errorMsgs: []
     };
-    loginState.showSpinner = true;
     var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/login"
     var paramList = [];
     for(prop in credentials){
@@ -131,13 +129,11 @@ function serverLogin(credentials){
     .then(function(responseObj){
             if(responseObj.success){
                 loginState.loggedIn = true;
-                loginState.showSpinner = false;
                 loginState.errors = false;
                 loginState.errorMsg = "";
                 return loginState;
             } else {
                 loginState.loggedIn = false;
-                loginState.showSpinner = false;
                 if(responseObj.errors !== undefined){
                     loginState.errors = true;
                     for(var i = 0; i < responseObj.errors.length; i++){

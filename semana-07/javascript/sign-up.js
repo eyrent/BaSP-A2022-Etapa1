@@ -55,15 +55,10 @@ function validateDate(input_date){
 function APIformatDate(date_string){
     dateParts = date_string.split("-");
     return [dateParts[1], dateParts[2], dateParts[0]].join("/");
-    // var date = new Date(date_string);
-    // return [date.getMonth(), date.getDate(), date.getFullYear()].join("/");
-
 }
 function ISOformatDate(date_string){
     dateParts = date_string.split("/");
     return [dateParts[2], dateParts[0], dateParts[1]].join("-");
-    // var date = new Date(date_string);
-    // return [ date.getFullYear(), date.getMonth(), date.getDate()].join("-");
 }
 function validatePhone(phone_string){
     var charCount = countCharsByGroup(phone_string);
@@ -181,48 +176,52 @@ function alertUser(dataObj, validationObj){
 }
 function serverCreateUser(payload){
     var signUpState = {
-        showSpinner: false,
         userCreated:  false,
         errors: false,
         errorMsgs: [],
         data: {}
     };
-    signUpState.showSpinner = true;
     var apiURI = "https://basp-m2022-api-rest-server.herokuapp.com/signup"
     var paramList = [];
     for(prop in payload){
         paramList.push(prop + "=" + payload[prop]);
     }
     fetch(apiURI + "?" + paramList.join("&"))
-    .then(function(loginApiResponse){
-        return loginApiResponse.json();
-    })
-    .then(function(responseObj){
-            if(responseObj.success){
-                signUpState.userCreated = true;
-                signUpState.showSpinner = false;
-                signUpState.errors = false;
-                signUpState.errorMsgs = [];
-                signUpState.data = responseObj.data;
-                storeAPIResponseData(responseObj.data);
-                return signUpState;
+        .then(function(loginApiResponse){
+            if(loginApiResponse.status >= 200 && loginApiResponse.status < 400){
+                return loginApiResponse.json();
             } else {
-                signUpState.userCreated = false;
-                signUpState.showSpinner = false;
-                signUpState.errorMsgs = [];
-                if(responseObj.errors !== undefined){
-                    signUpState.errors = true;
-                    for(var i = 0; i < responseObj.errors.length; i++){
-                        signUpState.errorMsgs.push(responseObj.errors[i].msg);
-                    }
-                } else{
-                    responseObj.errors = false;
-                }
-                return signUpState;
+                throw loginApiResponse.statusText;
             }
         })
+        .then(function(responseObj){
+                if(responseObj.success){
+                    signUpState.userCreated = true;
+                    signUpState.errors = false;
+                    signUpState.errorMsgs = [];
+                    signUpState.data = responseObj.data;
+                    storeAPIResponseData(responseObj.data);
+                    return signUpState;
+                } else {
+                    signUpState.userCreated = false;
+                    signUpState.errorMsgs = [];
+                    if(responseObj.errors !== undefined){
+                        signUpState.errors = true;
+                        for(var i = 0; i < responseObj.errors.length; i++){
+                            signUpState.errorMsgs.push(responseObj.errors[i].msg);
+                        }
+                    } else{
+                        responseObj.errors = false;
+                    }
+                    return signUpState;
+                }
+        })
         .then(function(signUpState) {
-            showMsg(signUpState);
+                showMsg(signUpState);
+        })
+        .catch(function(error){
+            console.log(error);
+            modalAlert("Error", "API request failed with error:", [], error);
         });
 }
 function showMsg(state){
@@ -289,7 +288,9 @@ window.onload = function(){
         payload.name = nameField.value;
         validation.name = validateName(payload.name);
         nameField.classList.add(validation.name ? "green-outline" : "red-outline");
-        document.querySelector("#name-field ~ .error-msg").classList.add("visible");
+        if(!validation.name){
+            document.querySelector("#name-field ~ .error-msg").classList.add("visible");
+        }
     }
     nameField.onfocus = function(){
         nameField.classList.remove("green-outline","red-outline");
@@ -304,7 +305,9 @@ window.onload = function(){
         payload.lastName = surnameField.value;
         validation.lastName = validateName(payload.lastName);
         surnameField.classList.add(validation.lastName ? "green-outline" : "red-outline");
-        document.querySelector("#surname-field ~ .error-msg").classList.add("visible");
+        if(!validation.lastName){
+            document.querySelector("#surname-field ~ .error-msg").classList.add("visible");
+        }
     }
     surnameField.onfocus = function(){
         surnameField.classList.remove("green-outline","red-outline");
@@ -319,7 +322,9 @@ window.onload = function(){
         payload.dni = dniField.value;
         validation.dni = validateDni(payload.dni);
         dniField.classList.add(validation.dni ? "green-outline" : "red-outline");
-        document.querySelector("#dni-field ~ .error-msg").classList.add("visible");
+        if(!validation.dni){
+            document.querySelector("#dni-field ~ .error-msg").classList.add("visible");
+        }
     }
     dniField.onfocus = function(){
         dniField.classList.remove("green-outline","red-outline");
@@ -331,10 +336,12 @@ window.onload = function(){
         validation.dob = validateDate(payload.dob);
     }
     dateBirthField.onblur = function(){
-        payload.dob = /* dateBirthField.value;  */APIformatDate(dateBirthField.value);
+        payload.dob = APIformatDate(dateBirthField.value);
         validation.dob = validateDate(payload.dob);
         dateBirthField.classList.add(validation.dob ? "green-outline" : "red-outline");
-        document.querySelector("#date-birth-field ~ .error-msg").classList.add("visible");
+        if(!validation.dob){
+            document.querySelector("#date-birth-field ~ .error-msg").classList.add("visible");
+        }
     }
     dateBirthField.onfocus = function(){
         dateBirthField.classList.remove("green-outline","red-outline");
@@ -349,7 +356,9 @@ window.onload = function(){
         payload.phone = phoneField.value;
         validation.phone = validatePhone(payload.phone);
         phoneField.classList.add(validation.phone ? "green-outline" : "red-outline");
-        document.querySelector("#phone-field ~ .error-msg").classList.add("visible");
+        if(!validation.phone){
+            document.querySelector("#phone-field ~ .error-msg").classList.add("visible");
+        }
     }
     phoneField.onfocus = function(){
         phoneField.classList.remove("green-outline","red-outline");
@@ -364,7 +373,9 @@ window.onload = function(){
         payload.address = homeAddressField.value;
         validation.address = validateHomeAdress(payload.address);
         homeAddressField.classList.add(validation.address ? "green-outline" : "red-outline");
-        document.querySelector("#home-address-field ~ .error-msg").classList.add("visible");
+        if(!validation.address){
+            document.querySelector("#home-address-field ~ .error-msg").classList.add("visible");
+        }
     }
     homeAddressField.onfocus = function(){
         homeAddressField.classList.remove("green-outline","red-outline");
@@ -379,7 +390,9 @@ window.onload = function(){
         payload.city = cityField.value;
         validation.city = validateCity(payload.city);
         cityField.classList.add(validation.city ? "green-outline" : "red-outline");
-        document.querySelector("#city-field ~ .error-msg").classList.add("visible");
+        if(!validation.city){
+            document.querySelector("#city-field ~ .error-msg").classList.add("visible");
+        }
     }
     cityField.onfocus = function(){
         cityField.classList.remove("green-outline","red-outline");
@@ -394,7 +407,9 @@ window.onload = function(){
         payload.zip = zipcodeField.value;
         validation.zip = validateZipCode(payload.zip);
         zipcodeField.classList.add(validation.zip ? "green-outline" : "red-outline");
-        document.querySelector("#zipcode-field ~ .error-msg").classList.add("visible");
+        if(!validation.zip){
+            document.querySelector("#zipcode-field ~ .error-msg").classList.add("visible");
+        }
     }
     zipcodeField.onfocus = function(){
         zipcodeField.classList.remove("green-outline","red-outline");
@@ -409,7 +424,9 @@ window.onload = function(){
         payload.email = emailField.value;
         validation.email = validateEmailAddress(payload.email);
         emailField.classList.add(validation.email ? "green-outline" : "red-outline");
-        document.querySelector("#email-address-field ~ .error-msg").classList.add("visible");
+        if(!validation.email){
+            document.querySelector("#email-address-field ~ .error-msg").classList.add("visible");
+        }
     }
     emailField.onfocus = function(){
         emailField.classList.remove("green-outline","red-outline");
@@ -424,7 +441,9 @@ window.onload = function(){
         payload.password = passField.value;
         validation.password = validatePass(payload.password);
         passField.classList.add(validation.password ? "green-outline" : "red-outline");
-        document.querySelector("#pass-field ~ .error-msg").classList.add("visible");
+        if(!validation.password){
+            document.querySelector("#pass-field ~ .error-msg").classList.add("visible");
+        }
     }
     passField.onfocus = function(){
         passField.classList.remove("green-outline","red-outline");
@@ -434,8 +453,12 @@ window.onload = function(){
     passConfirmField.value = passField.value;
     passConfirmField.onblur = function(){
         validation.password &&= passField.value === passConfirmField.value;
-        passConfirmField.classList.add(validation.password ? "green-outline" : "red-outline");
-        document.querySelector("#pass-confirm-field ~ .error-msg").classList.add("visible");
+        passConfirmField.classList.add(
+            passField.value === passConfirmField.value ? "green-outline" : "red-outline"
+        );
+        if(passField.value !== passConfirmField.value){
+            document.querySelector("#pass-confirm-field ~ .error-msg").classList.add("visible");
+        }
     }
     passConfirmField.onfocus = function(){
         passConfirmField.classList.remove("green-outline","red-outline");
@@ -452,7 +475,6 @@ window.onload = function(){
     });
     var modalOKBtn = document.querySelector(".modal-box button");
     var modal = document.querySelector(".modal");
-    // console.log(modal, modalOKBtn);
     modalOKBtn.addEventListener("click", function(){
         modal.classList.add("hidden");
     })
