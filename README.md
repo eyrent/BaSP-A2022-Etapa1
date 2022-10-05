@@ -4,9 +4,6 @@ _by Fabricio Castillo_
 ## About this project
 As an assignment for the **Become a Software Developer**  bootcamp (2022 edition) by [Radium Rocket](https://radiumrocket.com/) I, as past of a work team, set out to develop a website/web app called **Trackgenix**. This file covers that development process.
 
-## Landing page layout
-<img src="semana-04/assets/img/landing-page.jpg">
-
 ## Project Log 📆
 
 ### Week 1
